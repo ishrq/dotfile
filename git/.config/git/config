@@ -35,8 +35,18 @@
 [diff]
     colorMoved = default
 
+[format]
+  signOff = yes
+
 [gpg]
 	program = gpg2
 
 [commit]
 	gpgsign = true
+    verbose = true
+
+[pull]
+    rebase = true
+
+[push]
+    gpgsign = if-asked
