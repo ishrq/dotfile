@@ -1,0 +1,7 @@
+--theme="TwoDark"
+--color=always
+--italic-text=always
+--style="numbers,changes,header"
+
+# Use ".gitignore"-style highlighting for ".ignore" files
+--map-syntax ".ignore:Git Ignore"

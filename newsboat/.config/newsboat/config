@@ -1,0 +1,72 @@
+# general
+auto-reload yes
+browser "librewolf --new-tab %u >/dev/null 2>&1 &"
+cleanup-on-quit yes
+download-retries 4
+download-timeout 10
+goto-next-feed no
+history-limit 0
+prepopulate-query-feeds yes
+reload-threads 4
+reload-time 120
+save-path "~/INBOX"
+
+# display
+show-keymap-hint no
+show-read-articles no
+show-read-feeds no
+show-title-bar no
+text-width 60
+datetime-format "%F"
+feedlist-format "%3i %t %u"
+articlelist-format "%3i %D %?T?%-T: ?%t"
+article-sort-order date
+
+# keybinding
+unbind-key ^B
+unbind-key l
+unbind-key L
+unbind-key C
+unbind-key ^C
+unbind-key A
+bind-key n toggle-article-read
+bind-key N next-unread
+bind-key m mark-feed-read
+bind-key M mark-all-feeds-read
+bind-key b bookmark
+bind-key o open-in-browser-and-mark-read
+bind-key O open-in-browser
+bind-key ^O open-all-unread-in-browser-and-mark-read
+bind-key a toggle-show-read-feeds
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key l open
+bind-key h quit
+bind-key g home
+bind-key G end
+bind-key u show-urls
+bind-key s sort
+bind-key S rev-sort
+bind-key w save
+
+# macro
+macro m set browser "mpv" ; open-in-browser-and-mark-read ; set browser "librewolf --new-tab %u >/dev/null 2>&1 &"
+macro d set browser "yt-dlp -q --progress -P '~/INBOX/Watchlater' --restrict-filenames --embed-subs" ; open-in-browser-and-mark-read ; set browser "librewolf --new-tab %u >/dev/null 2>&1 &"
+macro p set browser "yt-dlp -q --progress -P '~/INBOX/Podcast' --restrict-filenames -x" ; open-in-browser-and-mark-read ; set browser "librewolf --new-tab %u >/dev/null 2>&1 &"
+
+# bookmarks
+bookmark-cmd "~/.config/newsboat/nb-book.fish"
+bookmark-interactive no
+bookmark-autopilot yes
+
+# color
+color listnormal color239 default
+color listnormal_unread color230 default
+color listfocus color239 color95
+color listfocus_unread color230 color95
+color article color230 default
+color info color230 default

@@ -1,0 +1,5 @@
+# Author: IA
+# Machine: PC
+# ---
+
+test $(gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled) = true && gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled false || gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true

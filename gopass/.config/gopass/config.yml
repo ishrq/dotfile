@@ -1,0 +1,10 @@
+autoclip: true
+autoimport: false
+cliptimeout: 20
+exportkeys: true
+nopager: false
+notifications: true
+parsing: true
+path: /home/ia/.password-store/
+safecontent: true
+mounts: {}

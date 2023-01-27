@@ -1,0 +1,66 @@
+TIMING:
+  TAP_MILLISEC: 200
+  DOUBLE_TAP_MILLISEC: 0
+  SYNTHETIC_KEYS_PAUSE_MILLISEC: 10
+
+MAPPINGS:
+
+  # Capslock: Esc on press, Ctrl on hold
+  - KEY: KEY_CAPSLOCK
+    TAP: KEY_ESC
+    HOLD: KEY_LEFTCTRL
+
+  # LeftShift: $ on press
+  - KEY: KEY_LEFTSHIFT
+    TAP: [ KEY_LEFTSHIFT, KEY_4, ]
+    HOLD: KEY_LEFTSHIFT
+
+  # LeftAlt: ` on press
+  - KEY: KEY_LEFTALT
+    TAP: KEY_GRAVE
+    HOLD: KEY_LEFTALT
+
+  # RightShift: ( on press
+  - KEY: KEY_RIGHTSHIFT
+    TAP: [ KEY_RIGHTSHIFT, KEY_9, ]
+    HOLD: KEY_RIGHTSHIFT
+
+  # RightCtrl: Right/word on press
+  - KEY: KEY_RIGHTCTRL
+    TAP: [KEY_RIGHTCTRL, KEY_RIGHT]
+    HOLD: KEY_RIGHTCTRL
+
+  # Space: Hold for Meta
+  # - KEY: KEY_SPACE
+  #   TAP: KEY_SPACE
+  #   HOLD: KEY_LEFTMETA
+
+  # Fn:
+  # - KEY: KEY_FN
+  #   TAP: KEY_HYPER
+  #   HOLD: KEY_FN
+
+  # Backspace
+  # - KEY: KEY_BACKSPACE
+  #   TAP: KEY_BACKSPACE
+  #   HOLD: [ KEY_LEFTCTRL, KEY_BACKSPACE]
+
+  # H
+  # - KEY: KEY_H
+  #   TAP: KEY_H
+  #   HOLD: KEY_LEFT
+
+  # J
+  # - KEY: KEY_J
+  #   TAP: KEY_J
+  #   HOLD: KEY_DOWN
+
+  # K
+  # - KEY: KEY_K
+  #   TAP: KEY_K
+  #   HOLD: KEY_UP
+
+  # L
+  # - KEY: KEY_L
+  #   TAP: KEY_L
+  #   HOLD: KEY_RIGHT

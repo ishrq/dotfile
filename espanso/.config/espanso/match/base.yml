@@ -1,0 +1,88 @@
+# espanso match file
+
+global_vars:
+  - name: first_name
+    type: echo
+    params:
+      echo: "Ishraque"
+  - name: last_name
+    type: echo
+    params:
+      echo: "Alam"
+
+matches:
+
+# Address
+  - trigger: "ad,,"
+    replace: "House 24 (flat 2B), Road 8, Block H, Aftabnagar (1229), Dhaka"
+    label: "Address/home"
+
+# Emails
+  - trigger: "@gm"
+    replace: "i.alam.2209@gmail.com"
+    label: "Email/gmail"
+  - trigger: "@pm"
+    replace: "ishraque-013@proton.me"
+    label: "Email/proton"
+  - trigger: "@rf1"
+    replace: "6l5k6k0c7@relay.firefox.com"
+    label: "Email/relay1"
+  - trigger: "@rf2"
+    replace: "sbaqcxtg6@relay.firefox.com"
+    label: "Email/relay2"
+  - trigger: "@rf3"
+    replace: "r4slsj8gh@relay.firefox.com"
+    label: "Email/relay3"
+
+# Date
+  - trigger: "dd,,"
+    replace: "{{mydate}}"
+    label: "Date"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%F"
+
+# Timestamp
+  - trigger: "ts,,"
+    replace: "{{mydate}}"
+    label: "Timestamp"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y%m%d%H%M"
+
+# Email signature
+  - trigger: "sig,,"
+    replace: "{{output}}"
+    label: "Email signature"
+    vars:
+      - name: output
+        type: choice
+        params:
+          values:
+            - "Regards,\n{{first_name}} {{last_name}}"
+            - "Sincerely,\n{{first_name}} {{last_name}}"
+            - "Thank you,\n{{first_name}} {{last_name}}"
+
+# ------------
+
+
+# HTML
+
+  - trigger: "html,,"
+    replace: |
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title></title>
+          <link rel="stylesheet" type="text/css" href="styles.css">
+        </head>
+        <body>
+
+        </body>
+      </html>
