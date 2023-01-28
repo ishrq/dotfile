@@ -1,5 +1,16 @@
 new-os-checklist.txt
 fish/.config/fish/fish_variables
+fish/.config/fish/conf.d/sponge.fish
+fish/.config/fish/conf.d/fzf.fish
+fish/.config/fish/conf.d/pisces.fish
+fish/.config/fish/conf.d/weather.fish
+**/fzf_configure_bindings.fish
+fish/.config/fish/functions/_fzf*.fish
+fish/.config/fish/functions/_pisces*.fish
+fish/.config/fish/functions/_sponge*.fish
+fish/.config/fish/functions/fisher.fish
+fish/.config/fish/functions/man.fish
+fish/.config/fish/functions/spnge_*.fish
 git/.config/git/config.local
 mpv/.config/mpv/watch_later/
 newsboat/.config/newsboat/config_phone
