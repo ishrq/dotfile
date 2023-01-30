@@ -95,12 +95,17 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
 
 --SKELETON
 
---ledger
+--Ledger
 autocmd('BufNewFile', {
-  pattern = '*/Finance/Ledger/ledger*.txt',
-  command = '0r ~/.config/nvim/skeletons/ledger.txt' })
+    pattern = '*/Finance/Ledger/ledger*.txt',
+    command = '0r ~/.config/nvim/skeletons/ledger.txt' })
 
---html
+--HTML
 autocmd('BufNewFile', {
-  pattern = '*.html',
-  command = '0r ~/.config/nvim/skeletons/html-skeleton.html' })
+    pattern = '*.html',
+    command = '0r ~/.config/nvim/skeletons/html-skeleton.html' })
+
+--CSS
+autocmd('BufNewFile', {
+    pattern = {'style.css', 'reset.css'},
+    command = '0r ~/.config/nvim/skeletons/css-reset.css' })
