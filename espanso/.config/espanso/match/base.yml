@@ -9,27 +9,55 @@ global_vars:
     type: echo
     params:
       echo: "Alam"
+  - name: domain
+    type: echo
+    params:
+      echo: "ishrq.com"
 
 matches:
 
 # Address
   - trigger: "ad,,"
-    replace: "House 24 (flat 2B), Road 8, Block H, Aftabnagar (1229), Dhaka"
+    replace: "House 24 (flat 2B), Road 8, Block H, Aftabnagar (1212), Dhaka"
     label: "Address/home"
 
 # Emails
+  - trigger: "@con"
+    replace: "contact@{{domain}}"
+    label: "Email/private/contact@ishrq.com"
+
+  - trigger: "@ia"
+    replace: "ia@{{domain}}"
+    label: "Email/private/ia@ishrq.com"
+
+  - trigger: "@work"
+    replace: "work@{{domain}}"
+    label: "Email/work/work@ishrq.com"
+
+  - trigger: "@admin"
+    replace: "admin@{{domain}}"
+    label: "Email/work/admin@ishrq.com"
+
+  - trigger: "@bz"
+    replace: "business@{{domain}}"
+    label: "Email/work/business@ishrq.com"
+
   - trigger: "@gm"
     replace: "i.alam.2209@gmail.com"
-    label: "Email/gmail"
+    label: "Email/private/gmail"
+
   - trigger: "@pm"
     replace: "ishraque-013@proton.me"
-    label: "Email/proton"
+    label: "Email/private/proton"
+
   - trigger: "@rf1"
     replace: "6l5k6k0c7@relay.firefox.com"
     label: "Email/relay1"
+
   - trigger: "@rf2"
     replace: "sbaqcxtg6@relay.firefox.com"
     label: "Email/relay2"
+
   - trigger: "@rf3"
     replace: "r4slsj8gh@relay.firefox.com"
     label: "Email/relay3"
@@ -68,21 +96,3 @@ matches:
             - "Thank you,\n{{first_name}} {{last_name}}"
 
 # ------------
-
-
-# HTML
-
-  - trigger: "html,,"
-    replace: |
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <title></title>
-          <link rel="stylesheet" type="text/css" href="styles.css">
-        </head>
-        <body>
-
-        </body>
-      </html>
