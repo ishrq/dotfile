@@ -7,64 +7,79 @@ local autocmd = vim.api.nvim_create_autocmd  --Create autocommand
 
 augroup('bufcheck', {clear = true})
 
--- reload config file on change
+--Reload config file on change
 autocmd('BufWritePost', {
   group   = 'bufcheck',
   pattern = vim.env.MYVIMRC,
   command = 'silent source %'})
 
--- highlight yanks
+--Highlight yanks
 autocmd('TextYankPost', {
   group    = 'bufcheck',
   pattern  = '*',
   callback = function() vim.highlight.on_yank{timeout=300} end })
 
--- resume previous position
+--Resume previous position
 autocmd('BufReadPost', {
   pattern = '*',
   command = [[ if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]], })
 
--- remove whitespace on write
+--Remove whitespace on write
 autocmd('BufWritePre', {
   pattern = '*',
   command = ":%s/\\s\\+$//e" })
 
--- don't auto comment new lines
+--Don't auto comment new lines
 autocmd('BufEnter', {
   pattern = '*',
   command = 'set fo-=c fo-=r fo-=o' })
 
--- start git messages in insert mode
+--Start git messages in insert mode
 autocmd('FileType', {
   group   = 'bufcheck',
   pattern = { 'gitcommit', 'gitrebase', },
   command = 'startinsert | 1' } )
 
--- no backup, swapfile, undofile for gopass
+--No backup, swapfile, undofile for gopass
 autocmd({'BufRead', 'BufNewFile'}, {
   pattern = { '/dev/shm/gopass*' },
   command = ' setlocal noswapfile nobackup noundofile shada="" ' } )
 
--- spellcheck
+--Color column indicator for 80 characters
 autocmd({'BufRead', 'BufNewFile'}, {
-  pattern = { '*.txt', '*.md', '*.tex'},
-  command = 'setlocal spell cc=80' } )
+  pattern = { 'gitcommit', 'markdown', 'text' },
+  command = 'cc=80' } )
 
--- disable color column
+--Disable color column
 autocmd('BufRead', {
   pattern = {'*/Journal/*', '*/Finance/*', '*/House/*', '*/List/*'},
   command = 'setlocal cc=' })
 
--- fold
+--Markdown/gitcommit
+autocmd('FileType', {
+	pattern = { "gitcommit", "markdown", "text", "log" },
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.spell = true
+	end,
+})
+
+--Fold
 autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
   group = augroup('TS_FOLD_WORKAROUND', {}),
   callback = function()
     vim.opt.foldmethod = 'expr'
     vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()' end })
 
+--HTML/CSS Shiftwidth
+autocmd("FileType", {
+    pattern = { "html", "css" },
+    callback = function()
+        vim.bo.shiftwidth = 2
+    end,
+})
 
--- auto create directory on save
--- https://jdhao.github.io/2022/08/21/you-do-not-need-a-plugin-for-this/
+--Create directory on save
 autocmd({ "BufWritePre" }, {
   pattern = "*",
   group = augroup("auto_create_dir", { clear = true }),
@@ -75,7 +90,6 @@ autocmd({ "BufWritePre" }, {
 })
 
 --Toggle relative number in Insert mode
---https://libreddit.spike.codes/r/neovim/comments/10bmy9w/lets_see_your_status_columns/
 local numbertogglegroup = augroup("numbertoggle", { clear = true })
 
 autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
