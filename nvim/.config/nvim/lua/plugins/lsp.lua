@@ -52,6 +52,9 @@ return {
             -- HTML
             require('lspconfig').html.setup{}
 
+            -- JS
+            require('lspconfig').eslint.setup{}
+
             -- Lua
             require'lspconfig'.sumneko_lua.setup {
                 settings = {
