@@ -52,6 +52,8 @@ bind-key u show-urls
 bind-key s sort
 bind-key S rev-sort
 bind-key w save
+bind-key r reload-all
+bind-key R reload
 
 # macro
 macro m set browser "mpv" ; open-in-browser-and-mark-read ; set browser "librewolf --new-tab %u >/dev/null 2>&1 &"
