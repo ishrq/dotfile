@@ -9,7 +9,6 @@ if test $USER="ia" && test $hostname="pop-os"
     set -x FZF_DEFAULT_OPTS '--cycle --layout=reverse --info="inline" --margin="1" --height=70% --color="gutter:-1,fg:dim"'
 
     # Abbreviations
-    abbr -a a 'aerc'
     abbr -a b 'vi ~/ARCHIVE/Journal/books.txt'
 end
 
