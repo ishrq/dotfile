@@ -1,4 +1,5 @@
 new-os-checklist.txt
+aerc/.config/aerc/accounts.conf
 fish/.config/fish/fish_variables
 fish/.config/fish/conf.d/sponge.fish
 fish/.config/fish/conf.d/fzf.fish

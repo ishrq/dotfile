@@ -22,43 +22,43 @@ matches:
     label: "Address/home"
 
 # Emails
-  - trigger: "@con"
+  - trigger: "@@con"
     replace: "contact@{{domain}}"
     label: "Email/private/contact@ishrq.com"
 
-  - trigger: "@ia"
+  - trigger: "@@ia"
     replace: "ia@{{domain}}"
     label: "Email/private/ia@ishrq.com"
 
-  - trigger: "@work"
+  - trigger: "@@work"
     replace: "work@{{domain}}"
     label: "Email/work/work@ishrq.com"
 
-  - trigger: "@admin"
+  - trigger: "@@admin"
     replace: "admin@{{domain}}"
     label: "Email/work/admin@ishrq.com"
 
-  - trigger: "@bz"
+  - trigger: "@@bz"
     replace: "business@{{domain}}"
     label: "Email/work/business@ishrq.com"
 
-  - trigger: "@gm"
+  - trigger: "@@gm"
     replace: "i.alam.2209@gmail.com"
     label: "Email/private/gmail"
 
-  - trigger: "@pm"
+  - trigger: "@@pm"
     replace: "ishraque-013@proton.me"
     label: "Email/private/proton"
 
-  - trigger: "@rf1"
+  - trigger: "@@rf1"
     replace: "6l5k6k0c7@relay.firefox.com"
     label: "Email/relay1"
 
-  - trigger: "@rf2"
+  - trigger: "@@rf2"
     replace: "sbaqcxtg6@relay.firefox.com"
     label: "Email/relay2"
 
-  - trigger: "@rf3"
+  - trigger: "@@rf3"
     replace: "r4slsj8gh@relay.firefox.com"
     label: "Email/relay3"
 
