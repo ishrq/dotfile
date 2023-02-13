@@ -16,5 +16,6 @@ git/.config/git/config.local
 mpv/.config/mpv/watch_later/
 newsboat/.config/newsboat/config_phone
 newsboat/.config/newsboat/urls
+newsboat/.config/newsboat/urls-alt
 nvim/.config/nvim/.undo-history/
 nvim/.config/nvim/lazy-lock.json
