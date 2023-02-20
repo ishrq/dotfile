@@ -1,4 +1,4 @@
-# Dotfiles for PC
+# Dot-files for PC
 
 Managed using [GNU Stow](https://www.gnu.org/software/stow/).
 
@@ -21,4 +21,5 @@ stow -S aerc bat espanso fish git gnome gopass interception librewolf mpv newsbo
 ```
 
 Remove symlink: `stow -D packages`
+
 Re-add symlink: `stow -R packages`
