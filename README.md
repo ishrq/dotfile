@@ -1,18 +1,24 @@
-# DOT-FILES
+# Dotfiles for PC
 
-Dot-files are managed using [GNU Stow](https://www.gnu.org/software/stow/).
+Managed using [GNU Stow](https://www.gnu.org/software/stow/).
 
 
-## INSTRUCTIONS
+## Instructions
 
-1. Create .dotfile/ directory in $HOME
-2. Copy files in a way that it replicates the actual folder hierarchy
-    ```
-    # e.g. for fish configs
-    cd .dotfile/
-    mkdir fish/.config/
-    cd ~/.config
-    cp fish/ ~/.dotfile/fish/.config/
-    ```
-3. To create symlink: `stow fish`
-4. To remove symlink: `stow -D fish`
+1. Clone repository
+```
+git clone git@github.com:ishrq/dotfile.git ~/.dotfiles/
+```
+
+2. Change directory
+```
+cd ~/.dotfiles/
+```
+
+3. Create symlink with Stow
+```
+stow -S aerc bat espanso fish git gnome gopass interception librewolf mpv newsboat nvim scripts starship vale wezterm zathura
+```
+
+Remove symlink: `stow -D packages`
+Re-add symlink: `stow -R packages`
