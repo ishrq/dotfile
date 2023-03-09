@@ -29,6 +29,7 @@ if test $USER = "u0_a1692"
     # Abbreviations
     abbr -a b 'vi ~/storage/shared/Documents/COMPUTER/ARCHIVE/Journal/books.txt'
     abbr -a n 'newsboat -C ~/.config/newsboat/config_phone'
+    abbr -a na 'newsboat -c /home/ia/.local/share/newsboat/cache-alt.db -u /home/ia/.config/newsboat/urls-alt'
 
 end
 
