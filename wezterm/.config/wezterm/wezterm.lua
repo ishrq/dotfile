@@ -20,7 +20,7 @@ local config = {
     hide_tab_bar_if_only_one_tab = true,
     window_padding = { left = 2, right = 0, top = 0, bottom = 0, },
     font_size = 17,
-    font = wezterm.font_with_fallback { 'DroidSansMono Nerd Font', 'Fira Code', },
+    font = wezterm.font_with_fallback { 'DroidSansMono Nerd Font', 'FiraCode Nerd Font', },
 
     -- KEYMAP
 
