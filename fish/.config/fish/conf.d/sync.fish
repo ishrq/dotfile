@@ -14,7 +14,7 @@ function sync -d "Sync files between devices"
     else
         set dest "s8"
 
-        rsync -auzP ~/RESOURCES/ s8:~/storage/shared/Documents/COMPUTER/RESOURCES/
+        rsync -auzP ~/RESOURCES/ --exclude=Fonts/ s8:~/storage/shared/Documents/COMPUTER/RESOURCES/
         rsync -auzP ~/ARCHIVE/{Workouts,Daybook,Weight-Log,Logs,Journal} s8:~/storage/shared/Documents/COMPUTER/ARCHIVE/
 
     end
