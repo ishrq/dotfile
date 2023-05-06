@@ -40,7 +40,7 @@ end
 starship init fish | source
 zoxide init fish | source
 
-set -gx EDITOR (which nvim)
+set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 set -gx GPG_TTY $(tty)
