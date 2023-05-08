@@ -15,9 +15,9 @@ end
 
 
 
-# S8: Termux
+# S8/M10: Termux
 
-if test $USER = "u0_a1692"
+if test $USER = "u0_a1692" || test $USER = "u0_a215"
     # Command not found
     function __fish_command_not_found_handler --on-event fish_command_not_found
         /data/data/com.termux/files/usr/libexec/termux/command-not-found $argv[1]
@@ -29,7 +29,6 @@ if test $USER = "u0_a1692"
     # Abbreviations
     abbr -a b 'vi ~/storage/shared/Documents/COMPUTER/ARCHIVE/Journal/books.txt'
     abbr -a n 'newsboat -C ~/.config/newsboat/config_phone'
-    abbr -a na 'newsboat -c ~/.local/share/newsboat/cache-alt.db -u ~/.config/newsboat/urls-alt -C ~/.config/newsboat/config_phone'
 
 end
 
@@ -65,7 +64,6 @@ abbr -a cp 'cp -rv'
 abbr -a mkdir 'mkdir -v'
 abbr -a mv 'mv -v'
 abbr -a n 'newsboat'
-abbr -a na 'newsboat -c ~/.local/share/newsboat/cache-alt.db -u ~/.config/newsboat/urls-alt'
 abbr -a y '  yt-dlp'
 #exa
 abbr -a la 'exa -a --icons --group-directories-first'
