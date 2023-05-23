@@ -3,7 +3,7 @@
 
 
 # ---DEPENDENCIES
-# grep, sd
+# grep, sed
 
 # ---
 
@@ -21,26 +21,9 @@ function journal
     case $argv
       set -f entry "$argv"
       if grep -q "^$day" "$file"
-        sd $day $day\n$entry $file
+        sed -i "s/$day/$day\\n$entry/g" $file
       else
-        sd === ===\n\n$day $file
-        # 01 Jan
-        if date +"%m-%d" | grep -q "01-01"
-          sd $day $day\n\n\$(date +"%Y")\nYEAR\ GOAL $file
-        end
-        # 22 Sep
-        if date +"%m-%d" | grep -q "09-22"
-          sd $day $day\nBIRTHDAY $file
-        end
-        # 1st day of month
-        if date +"%d" | grep -q "01"
-          sd $day $day\n\n\$(date +"%Y-%m")\nMONTH\ GOAL $file
-        end
-        # Saturday
-        if date +"%a" | grep -q "Wed"
-          sd $day $day\nWEEKLY\ REVIEW $file
-        end
-        sd $day $day\n$entry $file
+        sed -i "s/===/===\\n\\n$day\\n$entry/g" $file
       end
         echo "[Entry added on $day]"
   end
