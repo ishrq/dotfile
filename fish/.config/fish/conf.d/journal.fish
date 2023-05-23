@@ -3,7 +3,7 @@
 
 
 # ---DEPENDENCIES
-# rg, sd
+# grep, sd
 
 # ---
 
@@ -20,24 +20,24 @@ function journal
       $EDITOR $file
     case $argv
       set -f entry "$argv"
-      if rg -q ^$day $file
+      if grep -q "^$day" "$file"
         sd $day $day\n$entry $file
       else
         sd === ===\n\n$day $file
         # 01 Jan
-        if date +"%m-%d" | rg -q "01-01"
+        if date +"%m-%d" | grep -q "01-01"
           sd $day $day\n\n\$(date +"%Y")\nYEAR\ GOAL $file
         end
         # 22 Sep
-        if date +"%m-%d" | rg -q "09-22"
+        if date +"%m-%d" | grep -q "09-22"
           sd $day $day\nBIRTHDAY $file
         end
         # 1st day of month
-        if date +"%d" | rg -q "01"
+        if date +"%d" | grep -q "01"
           sd $day $day\n\n\$(date +"%Y-%m")\nMONTH\ GOAL $file
         end
         # Saturday
-        if date +"%a" | rg -q "Sat"
+        if date +"%a" | grep -q "Wed"
           sd $day $day\nWEEKLY\ REVIEW $file
         end
         sd $day $day\n$entry $file
