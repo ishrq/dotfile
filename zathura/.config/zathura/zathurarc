@@ -1,1 +1,15 @@
+# Theme
 include catppuccin-mocha
+
+# Copy to clipboard
+set selection-clipboard clipboard
+
+# Side-by-side mode
+map D set "first-page-column 1:1"
+map <C-d> set "first-page-column 1:2"
+
+# Stop at page boundaries
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
