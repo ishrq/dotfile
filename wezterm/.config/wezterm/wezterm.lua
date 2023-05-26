@@ -35,18 +35,25 @@ local config = {
         -- { key = 'a', mods = 'LEADER', action = act.ShowLauncher },
         { key = '/', mods = 'LEADER', action = act.Search { CaseInSensitiveString = '' }, },
 
+        -- Copy/paste
         { key = 'v', mods = 'CTRL|SHIFT', action="Paste"},
         { key = 'c', mods = 'CTRL|SHIFT', action="Copy"},
 
+        -- Scroll
         { key = 'k', mods = 'CTRL|SHIFT', action = act.ScrollByLine(-1) },
         { key = 'j', mods = 'CTRL|SHIFT', action = act.ScrollByLine(1) },
 
+        -- Font size
         { key = '0', mods = 'CTRL', action=act.ResetFontSize},
         { key = '=', mods = 'CTRL', action=act.IncreaseFontSize},
         { key = '-', mods = 'CTRL', action=act.DecreaseFontSize},
 
+        -- Panes
         { key = 'x', mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
         { key = 's', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
+        { key = 'z', mods = 'LEADER', action="TogglePaneZoomState" },
+        { key = 'p', mods = 'LEADER', action = act.PaneSelect },
+        { key = 'p', mods = 'LEADER|CTRL', action = act.PaneSelect {mode = 'SwapWithActive'} },
         { key = '[', mods = 'ALT', action = act.ActivatePaneDirection 'Prev', },
         { key = ']', mods = 'ALT', action = act.ActivatePaneDirection 'Next', },
         { key = '[', mods = 'LEADER', action = act.RotatePanes 'CounterClockwise', },
@@ -55,8 +62,8 @@ local config = {
         { key = 'j', mods = 'LEADER', action = act.AdjustPaneSize { 'Down', 5 }, },
         { key = 'k', mods = 'LEADER', action = act.AdjustPaneSize { 'Up', 5 } },
         { key = 'l', mods = 'LEADER', action = act.AdjustPaneSize { 'Right', 5 }, },
-        { key = 'z', mods = 'LEADER', action="TogglePaneZoomState" },
 
+        -- Tabs
         { key = 't', mods = 'LEADER', action=act{SpawnTab="CurrentPaneDomain"}},
         { key = '1', mods = 'LEADER', action=act{ActivateTab=0}},
         { key = '2', mods = 'LEADER', action=act{ActivateTab=1}},
