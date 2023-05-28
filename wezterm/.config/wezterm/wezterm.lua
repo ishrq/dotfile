@@ -13,12 +13,14 @@ local config = {
     check_for_updates = false,
     adjust_window_size_when_changing_font_size = false,
 
-    -- DISPLAY
+    -- VISUAL
 
     color_scheme = "astromouse (terminal.sexy)",
     inactive_pane_hsb = { hue = 1.0, saturation = 0.4, brightness = 0.9 },
     hide_tab_bar_if_only_one_tab = true,
+    use_fancy_tab_bar = false,
     window_padding = { left = 2, right = 0, top = 0, bottom = 0, },
+    window_decorations = "TITLE",
     font_size = 17,
     font = wezterm.font_with_fallback { 'DroidSansMono Nerd Font', 'FiraCode Nerd Font', },
 
