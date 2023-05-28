@@ -32,16 +32,16 @@ local config = {
         -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
         { key = 'a', mods = 'LEADER|CTRL', action = act.SendString '\x01', },
 
-        -- { key = 'a', mods = 'LEADER', action = act.ShowLauncher },
+        { key = ' ', mods = 'LEADER', action = act.ShowLauncher },
         { key = '/', mods = 'LEADER', action = act.Search { CaseInSensitiveString = '' }, },
 
         -- Copy/paste
-        { key = 'v', mods = 'CTRL|SHIFT', action="Paste"},
-        { key = 'c', mods = 'CTRL|SHIFT', action="Copy"},
+        { key = 'V', mods = 'CTRL', action=act.PasteFrom 'Clipboard' },
+        { key = 'C', mods = 'CTRL', action=act.CopyTo 'Clipboard'},
 
         -- Scroll
-        { key = 'k', mods = 'CTRL|SHIFT', action = act.ScrollByLine(-1) },
-        { key = 'j', mods = 'CTRL|SHIFT', action = act.ScrollByLine(1) },
+        { key = 'K', mods = 'CTRL', action = act.ScrollByLine(-1) },
+        { key = 'J', mods = 'CTRL', action = act.ScrollByLine(1) },
 
         -- Font size
         { key = '0', mods = 'CTRL', action=act.ResetFontSize},
@@ -49,22 +49,23 @@ local config = {
         { key = '-', mods = 'CTRL', action=act.DecreaseFontSize},
 
         -- Panes
-        { key = 'x', mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
-        { key = 's', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
+        { key = 'h', mods = 'LEADER', action = act.SplitPane { direction = 'Left' } },
+        { key = 'j', mods = 'LEADER', action = act.SplitPane { direction = 'Down' } },
+        { key = 'k', mods = 'LEADER', action = act.SplitPane { direction = 'Up' } },
+        { key = 'l', mods = 'LEADER', action = act.SplitPane { direction = 'Right' } },
+        { key = 'H', mods = 'LEADER', action = act.AdjustPaneSize { 'Left', 5 }, },
+        { key = 'J', mods = 'LEADER', action = act.AdjustPaneSize { 'Down', 5 }, },
+        { key = 'K', mods = 'LEADER', action = act.AdjustPaneSize { 'Up', 5 } },
+        { key = 'L', mods = 'LEADER', action = act.AdjustPaneSize { 'Right', 5 }, },
         { key = 'z', mods = 'LEADER', action="TogglePaneZoomState" },
-        { key = 'p', mods = 'LEADER', action = act.PaneSelect },
-        { key = 'p', mods = 'LEADER|CTRL', action = act.PaneSelect {mode = 'SwapWithActive'} },
+        { key = 's', mods = 'LEADER|CTRL', action = act.PaneSelect {mode = 'SwapWithActive'} },
         { key = '[', mods = 'ALT', action = act.ActivatePaneDirection 'Prev', },
         { key = ']', mods = 'ALT', action = act.ActivatePaneDirection 'Next', },
-        { key = '[', mods = 'LEADER', action = act.RotatePanes 'CounterClockwise', },
-        { key = ']', mods = 'LEADER', action = act.RotatePanes 'Clockwise' },
-        { key = 'h', mods = 'LEADER', action = act.AdjustPaneSize { 'Left', 5 }, },
-        { key = 'j', mods = 'LEADER', action = act.AdjustPaneSize { 'Down', 5 }, },
-        { key = 'k', mods = 'LEADER', action = act.AdjustPaneSize { 'Up', 5 } },
-        { key = 'l', mods = 'LEADER', action = act.AdjustPaneSize { 'Right', 5 }, },
+        { key = '[', mods = 'CTRL', action = act.RotatePanes 'CounterClockwise', },
+        { key = ']', mods = 'CTRL', action = act.RotatePanes 'Clockwise' },
 
         -- Tabs
-        { key = 't', mods = 'LEADER', action=act{SpawnTab="CurrentPaneDomain"}},
+        { key = 't', mods = 'CTRL', action=act{SpawnTab="CurrentPaneDomain"}},
         { key = '1', mods = 'LEADER', action=act{ActivateTab=0}},
         { key = '2', mods = 'LEADER', action=act{ActivateTab=1}},
         { key = '3', mods = 'LEADER', action=act{ActivateTab=2}},
