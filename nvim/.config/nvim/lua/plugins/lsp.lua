@@ -166,7 +166,8 @@ return {
                     require("null-ls").builtins.formatting.black,
                     require("null-ls").builtins.formatting.deno_fmt, --TODO: config later from https://deno.land/
                     require("null-ls").builtins.formatting.stylua,
-                    require("null-ls").builtins.hover.dictionary
+                    require("null-ls").builtins.hover.dictionary,
+                    require("null-ls").builtins.code_actions.gitsigns,
                 }
 
             }
