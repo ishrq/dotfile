@@ -38,7 +38,7 @@ return {
             -- SERVER
 
             -- Bash
-            -- require'lspconfig'.bashls.setup{}
+            require'lspconfig'.bashls.setup{}
 
             -- C
             require'lspconfig'.clangd.setup{}
@@ -84,7 +84,7 @@ return {
             -- require'lspconfig'.sqlls.setup{}
 
             -- Typescript
-            -- require'lspconfig'.tsserver.setup{}
+            require'lspconfig'.tsserver.setup{}
 
 
             -- LSP Attach
