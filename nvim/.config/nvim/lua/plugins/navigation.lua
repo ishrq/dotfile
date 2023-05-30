@@ -14,7 +14,6 @@ return {
         },
         config = function()
             require('telescope').setup {
-                --TODO: Modify layout
                 defaults = {
                     layout_strategy = 'flex',
                     prompt_position = 'bottom',
@@ -25,15 +24,5 @@ return {
             require('telescope').load_extension('fzf')
             require('telescope').load_extension('undo')
         end
-    },
-    --Easy motion
-    --NOTE: Find a replacement, author won't maintain
-    {
-        'phaazon/hop.nvim', branch = 'v2',
-        event = 'VeryLazy',
-        cmd = 'Hop',
-        config = function() require('hop').setup{
-            quit_key = '<SPC>', multi_windows = true
-        } end
     },
 }

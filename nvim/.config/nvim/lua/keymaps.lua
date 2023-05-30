@@ -37,8 +37,7 @@ map("n", "<C-d>", "<C-d>zz") --Center screen on up
 map("n", "<C-u>", "<C-u>zz") --Center screen on down
 
 --Buffer
-map("n", "]b", ":bnext<CR>", def, { desc = "Next buffer" })
-map("n", "[b", ":bprevious<CR>", def, { desc = "Previous buffer" })
+map("n", "]b", ":bnext<CR>", def, { desc = "Next buffer" }) map("n", "[b", ":bprevious<CR>", def, { desc = "Previous buffer" })
 map("n", "<leader>b", ":lua require'telescope.builtin'.buffers{}<cr>", def, { desc = "Search buffers" })
 
 --Move text up/down
@@ -68,16 +67,6 @@ map("n", "<leader>u", ":Telescope undo<cr>", { desc = "Search undotree" }) --fol
 map("n", "<leader>gf", ":lua require('telescope.builtin').git_files{}<cr>", { desc = "Search git files" })
 map("n", "<leader>gc", ":lua require('telescope.builtin').git_commits{}<cr>", { desc = "Search git commits" })
 map("n", "<leader>gs", ":lua require('telescope.builtin').git_status{}<cr>", { desc = "Search git status" })
-
---phaazon/hop.nvim
-map(
-    "n",
-    "<leader><space>",
-    ":lua require'hop'.hint_words({current_line_only = true})<cr>",
-    def,
-    { desc = "Hop to word" }
-)
-map("n", "<leader>/", ":lua require'hop'.hint_patterns()<cr>", def, { desc = "Hop to pattern" })
 
 -- Diagnostic keymaps
 map("n", "[d", vim.diagnostic.goto_prev, def)
