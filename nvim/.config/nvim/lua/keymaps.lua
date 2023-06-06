@@ -19,6 +19,7 @@ map('v', '.', ':normal .<CR>', { desc = "Apply repeat to selected lines"})
 -- Don't leave visual mode after indenting
 map('v', '>', '>gv^', {desc = "Resume visual mode after indent"})
 map('v', '<', '<gv^', {desc = "Resume visual mode after indent"})
+map('i', '<c-f>', '<C-g>u<Esc>[S1z=`]a<c-g>u', def, {desc = "Fix spelling"})
 map("n", "<leader>=", ":set spell!<cr>", { desc = "Spelling" })
 map("n", "<leader>8", ':execute "set cc=" . (&cc == "" ? "80" : "")<cr>', def, { desc = "Column color" })
 map("n", "<leader>a", ":keepjumps normal! GVgg<cr>", def, { desc = "Select all" })
