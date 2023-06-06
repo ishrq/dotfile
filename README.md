@@ -58,3 +58,16 @@ Update all: `fisher update`
 Remove plugin: `fisher remove <plugin>`
 
 Remove all: `fisher list | fisher remove`
+
+
+### Interception Tools
+
+Detailed instructions in [Interception Tools](https://gitlab.com/interception/linux/tools).
+
+Plugins:
+[dual-function-keys](https://gitlab.com/interception/linux/plugins/dual-function-keys)
+
+My mappings:
+1. `CAPSLOCK` - `ESC` on tap, `CTRL` on hold
+2. `LEFT SHIFT` - `$` on tap
+3. `RIGHT ALT` - `BACKSPACE` on tap
