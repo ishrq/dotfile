@@ -15,20 +15,25 @@ MAPPINGS:
     TAP: [ KEY_LEFTSHIFT, KEY_4, ]
     HOLD: KEY_LEFTSHIFT
 
-  # LeftAlt: ` on press
-  - KEY: KEY_LEFTALT
-    TAP: KEY_GRAVE
-    HOLD: KEY_LEFTALT
+  # RightShift
+  # - KEY: KEY_RIGHTSHIFT
+  #   TAP: [ KEY_RIGHTSHIFT, KEY_4, ]
+  #   HOLD: KEY_RIGHTSHIFT
 
-  # RightShift: ( on press
-  - KEY: KEY_RIGHTSHIFT
-    TAP: [ KEY_RIGHTSHIFT, KEY_9, ]
-    HOLD: KEY_RIGHTSHIFT
+  # LeftAlt
+  # - KEY: KEY_LEFTALT
+  #   TAP: KEY_GRAVE
+  #   HOLD: KEY_LEFTALT
+
+  # RightAlt: Backspace on press
+  - KEY: KEY_RIGHTALT
+    TAP: KEY_BACKSPACE
+    HOLD: KEY_RIGHTALT
 
   # RightCtrl: Right/word on press
-  - KEY: KEY_RIGHTCTRL
-    TAP: [KEY_RIGHTCTRL, KEY_RIGHT]
-    HOLD: KEY_RIGHTCTRL
+  # - KEY: KEY_RIGHTCTRL
+  #   TAP: [KEY_RIGHTCTRL, KEY_RIGHT]
+  #   HOLD: KEY_RIGHTCTRL
 
   # Space: Hold for Meta
   # - KEY: KEY_SPACE
