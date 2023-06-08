@@ -67,7 +67,7 @@ local config = {
         { key = ']', mods = 'CTRL', action = act.RotatePanes 'Clockwise' },
 
         -- Tabs
-        { key = 't', mods = 'CTRL', action=act{SpawnTab="CurrentPaneDomain"}},
+        { key = 't', mods = 'LEADER', action=act{SpawnTab="CurrentPaneDomain"}},
         { key = '1', mods = 'LEADER', action=act{ActivateTab=0}},
         { key = '2', mods = 'LEADER', action=act{ActivateTab=1}},
         { key = '3', mods = 'LEADER', action=act{ActivateTab=2}},
