@@ -31,8 +31,8 @@ return{
         cmd = { "TodoTelescope" },
         config = true,
         keys = {
-            { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-            { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+            -- { "<leader>tn", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+            -- { "<leader>tp", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
             { "<leader>;", "<cmd>TodoTelescope<cr>", desc = "Todo" },
         },
     },

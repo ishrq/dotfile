@@ -52,6 +52,11 @@ return {
                 desc = "Git status",
             },
             {
+                "<leader>b",
+                function() require("telescope.builtin").buffers() end,
+                desc = "Buffers",
+            },
+            {
                 "<leader>j",
                 function() require("telescope.builtin").jumplist() end,
                 desc = "Jumplist",
@@ -65,6 +70,16 @@ return {
                 "<leader>m",
                 function() require("telescope.builtin").marks() end,
                 desc = "Marks",
+            },
+            {
+                "<leader>q",
+                function() require("telescope.builtin").diagnostics() end,
+                desc = "Diagnostics",
+            },
+            {
+                "<leader>y",
+                function() require("telescope.builtin").registers() end,
+                desc = "Registers",
             },
             {
                 "<leader>1",
