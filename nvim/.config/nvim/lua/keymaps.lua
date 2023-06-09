@@ -9,13 +9,8 @@ vim.g.maplocalleader = " "
 local map = vim.keymap.set
 local def = { noremap = true, silent = true }
 
---[[ Unused key guides
-Leader  ; , . 0 2 3 4 6 7 c e f h i o r v w z
-Comma   , . ; / = - <space>
-]]
-
 -- General
-map('v', '.', ':normal .<CR>', { desc = "Apply repeat to selected lines"})
+map('v', '.', ':normal .<CR>', { desc = "Apply repeat on select"})
 map('i', '<c-f>', '<C-g>u<Esc>[S1z=`]a<c-g>u', def, {desc = "Fix spelling"})
 map("n", "<leader>=", ":set spell!<cr>", { desc = "Spelling" })
 map("n", "<leader>8", ':execute "set cc=" . (&cc == "" ? "80" : "")<cr>', def, { desc = "Column color" })
@@ -32,15 +27,25 @@ map("", "gp", "`[v`]", def, { desc = "Select pasted" })
 map("", "<leader>y", ":lua require'telescope.builtin'.registers{}<cr>", def, { desc = "Search register" })
 map("x", "<leader>p", [["_dP]], { desc = "Replace selection with register" })
 
--- Navigate
-map("i", "<c-h>", "<left>") --Move cursor left
-map("i", "<c-l>", "<right>") --Move cursor right
-map("n", "<C-d>", "<C-d>zz") --Center screen on up
-map("n", "<C-u>", "<C-u>zz") --Center screen on down
+-- Move through command history
+map("c", "<C-n>", "<Down>")
+map("c", "<C-p>", "<Up>")
+
+-- Move cursor in insert mode
+map("i", "<c-h>", "<left>")
+map("i", "<c-l>", "<right>")
+
+-- Center screen on up/down
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+
+-- Center screen on search
+map("n", "n", "nzzzv", def)
+map("n", "N", "Nzzzv", def)
+
+-- Move through line breaks
 map({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map("n", "n", "nzzzv", def) --Center next search
-map("n", "N", "Nzzzv", def) --Center previous search
 
 
 -- Buffer
