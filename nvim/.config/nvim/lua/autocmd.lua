@@ -24,6 +24,11 @@ autocmd('BufReadPost', {
   pattern = '*',
   command = [[ if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]], })
 
+-- resize splits if window got resized
+autocmd('VimResized', {
+  callback = function() vim.cmd("tabdo wincmd =") end,
+})
+
 --Remove whitespace on write
 autocmd('BufWritePre', {
   pattern = '*',
