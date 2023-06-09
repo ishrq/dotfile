@@ -77,7 +77,7 @@ autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
     vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()' end })
 
 --HTML/CSS Shiftwidth
-autocmd("FileType", {
+autocmd('FileType', {
     pattern = { "html", "css" },
     callback = function()
         vim.bo.shiftwidth = 2
@@ -85,7 +85,7 @@ autocmd("FileType", {
 })
 
 --Create directory on save
-autocmd({ "BufWritePre" }, {
+autocmd('BufWritePre', {
   pattern = "*",
   group = augroup("auto_create_dir", { clear = true }),
   callback = function(ctx)
@@ -94,18 +94,29 @@ autocmd({ "BufWritePre" }, {
   end
 })
 
+-- Open help in a new buffer instead of a vsplit
+autocmd('BufWinEnter', {
+  pattern = '*',
+  callback = function(event)
+    if vim.bo[event.buf].filetype == 'help' then
+      vim.cmd.only()
+      vim.bo.buflisted = true
+    end
+  end,
+})
+
 --Toggle relative number in Insert mode
 local numbertogglegroup = augroup("numbertoggle", { clear = true })
 
-autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
-    pattern = "*",
+autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
+    pattern = '*',
     callback = function()
         vim.wo.relativenumber = true
     end,
     group = numbertogglegroup, })
 
-autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
-    pattern = "*",
+autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
+    pattern = '*',
     callback = function()
         vim.wo.relativenumber = false
     end,
