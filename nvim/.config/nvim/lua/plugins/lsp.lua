@@ -130,39 +130,26 @@ return {
 
             return {
                 sources = {
-                    completion.spell,
-                    completion.luasnip,
-
-                    diagnostics.todo_comments,
-                    diagnostics.trail_space,
-
-                    code_actions.codespell,
-                    diagnostics.codespell,
-                    formatting.codespell,
-
                     code_actions.eslint_d,
+                    code_actions.gitsigns,
+                    completion.luasnip,
+                    completion.spell,
+                    diagnostics.alex,
+                    diagnostics.codespell,
                     diagnostics.eslint_d,
-                    formatting.eslint_d,
-
                     diagnostics.fish,
-                    formatting.fish_indent,
-
                     diagnostics.mdl,
                     diagnostics.phpcs,
-
-                    diagnostics.vale,
-
+                    diagnostics.todo_comments,
+                    diagnostics.trail_space,
+                    diagnostics.write_good,
                     formatting.black,
-
-                    formatting.deno_fmt,
-
+                    formatting.codespell,
+                    formatting.eslint_d,
+                    formatting.fish_indent,
                     formatting.jq,
-
                     formatting.stylua,
-
                     hover.dictionary,
-
-                    code_actions.gitsigns,
                 }
             }
         end,
