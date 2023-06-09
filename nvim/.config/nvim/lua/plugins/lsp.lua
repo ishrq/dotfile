@@ -5,7 +5,7 @@
 return {
     {
         "neovim/nvim-lspconfig",
-        event = "BufReadPre",
+        event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             { 'williamboman/mason-lspconfig.nvim', dependencies = { 'williamboman/mason.nvim', config = true }, },
@@ -15,11 +15,16 @@ return {
             diagnostics = {
                 underline = true,
                 update_in_inset = false,
-                -- virtual_text { spacing = 4, prefix = "●"},
                 severity_sort = true,
+                virtual_text = {
+                    spacing = 4,
+                    source = "if_many",
+                    prefix = "●"
+                },
             },
             -- auto format on save
             autoformat = true,
+            format_notify = false,
             format = {
                 formatting_options = nil,
                 timeout_ms = nil,
@@ -29,34 +34,52 @@ return {
             local lspconfig = require('lspconfig')
             local lsp_defaults = lspconfig.util.default_config
 
-            lsp_defaults.capabilities = vim.tbl_deep_extend(
-            'force',
-            lsp_defaults.capabilities,
-            require('cmp_nvim_lsp').default_capabilities()
-            )
+            lsp_defaults.capabilities = vim.tbl_deep_extend( 'force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+            --Enable (broadcasting) snippet capability for completion
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
 
             -- SERVER
 
-            -- Bash
-            require'lspconfig'.bashls.setup{}
-
-            -- C
-            require'lspconfig'.clangd.setup{}
+            lspconfig.bashls.setup{} -- Bash
+            lspconfig.clangd.setup{} -- C
+            lspconfig.cssmodules_ls.setup{} --CSS Modules
+            lspconfig.golangci_lint_ls.setup{} -- Go
+            lspconfig.phpactor.setup{} --PHP
+            lspconfig.pylsp.setup{} -- Python
+            lspconfig.sqlls.setup{} -- SQL
+            lspconfig.vale_ls.setup{} --Vale
+            -- lspconfig.tailwindcss.setup{} --Tailwind CSS
+            -- lspconfig.tsserver.setup{} --Typescript
 
             -- CSS
-            require('lspconfig').cssls.setup{}
-
-            -- Go
-            require'lspconfig'.golangci_lint_ls.setup{}
+            lspconfig.cssls.setup{
+                capabilities = capabilities,
+            }
 
             -- HTML
-            require('lspconfig').html.setup{}
+            lspconfig.html.setup{
+                capabilities = capabilities,
+            }
 
             -- JS
-            require('lspconfig').eslint.setup{}
+            lspconfig.eslint.setup{
+                on_attach = function(client, bufnr)
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        buffer = bufnr,
+                        command = "EslintFixAll",
+                    })
+                end,
+            }
+
+            -- Json
+            lspconfig.jsonls.setup{
+                capabilities = capabilities,
+            }
 
             -- Lua
-            require'lspconfig'.lua_ls.setup {
+            lspconfig.lua_ls.setup {
                 settings = {
                     Lua = {
                         runtime = { version = 'LuaJIT', },
@@ -67,110 +90,81 @@ return {
                 },
             }
 
-
-            -- Json
-            -- require'lspconfig'.jsorequire("null-ls").setup{}
-
-            -- Python
-            require'lspconfig'.pylsp.setup{}
-
-            -- Pyright
-            -- require'lspconfig'.pyright.setup{}
-
-            -- Rust
-            -- require'lspconfig'.rust_analyzer.setup{}
-
-            -- SQL
-            -- require'lspconfig'.sqlls.setup{}
-
-            -- Typescript
-            require'lspconfig'.tsserver.setup{}
-
-
-            -- LSP Attach
-
+            -- Use LspAttach autocommand to only map the following keys
+            -- after the language server attaches to the current buffer
             vim.api.nvim_create_autocmd('LspAttach', {
-                desc = 'LSP actions',
-                callback = function()
-                    local bufmap = function(mode, lhs, rhs)
-                        local opts = {buffer = true}
-                        vim.keymap.set(mode, lhs, rhs, opts)
-                    end
+                group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+                callback = function(ev)
+                    -- Enable completion triggered by <c-x><c-o>
+                    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-                    -- Jump to declaration
-                    -- bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-                    bufmap('n', 'gD', vim.lsp.buf.declaration)
-
-                    -- Jump to the definition
-                    -- bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-                    bufmap('n', 'gd', vim.lsp.buf.definition)
-
-                    -- Displays hover information about the symbol under the cursor
-                    -- bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
-                    bufmap('n', 'K', vim.lsp.buf.hover)
-
-                    -- Lists all the implementations for the symbol under the cursor
-                    -- bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-                    bufmap('n', 'gi', vim.lsp.buf.implementation)
-
-                    -- Displays a function's signature information
-                    -- bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-                    bufmap('n', '<C-k>', vim.lsp.buf.signature_help)
-
-                    -- Add workspace folder
-                    bufmap('n', '<leader>wa', vim.lsp.buf.add_workspace_folder)
-
-                    -- Remove workspace folder
-                    bufmap('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder)
-
-                    -- List workspace folders
-                    bufmap('n', '<leader>wl', function()
-                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                    end)
-
-                    -- Jumps to the definition of the type symbol
-                    bufmap('n', '<leader>D', vim.lsp.buf.type_definition)
-
-                    -- Lists all the references
-                    bufmap('n', 'gr', vim.lsp.buf.references)
-
-                    -- Renames all references to the symbol under the cursor
-                    bufmap('n', '<leader>rn', vim.lsp.buf.rename)
-
-                    -- Selects a code action available at the current cursor position
-                    bufmap('n', '<leader>ca', vim.lsp.buf.code_action)
-
-                    -- Show diagnostics in a floating window
-                    bufmap('n', 'gl', vim.diagnostic.open_float)
-
-                    -- Format
-                    bufmap('n', '<leader>f', function() vim.lsp.buf.format { async = true } end)
-                end
+                    -- Buffer local mappings.
+                    local opts = { buffer = ev.buf }
+                    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+                    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+                    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+                    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+                    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+                    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+                    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+                    vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
+                    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+                    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+                    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+                    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+                    vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, opts)
+                end,
             })
         end
     },
     {
         "jose-elias-alvarez/null-ls.nvim",
-        event = "BufReadPre",
-        config = function()
-            require("null-ls").setup {
-                sources = {
-                    require("null-ls").builtins.completion.spell,
-                    require("null-ls").builtins.diagnostics.codespell,
-                    require("null-ls").builtins.formatting.codespell,
-                    require("null-ls").builtins.diagnostics.eslint_d,
-                    require("null-ls").builtins.formatting.eslint_d,
-                    require("null-ls").builtins.diagnostics.fish,
-                    require("null-ls").builtins.formatting.fish_indent,
-                    require("null-ls").builtins.diagnostics.vale,
-                    require("null-ls").builtins.formatting.black,
-                    require("null-ls").builtins.formatting.deno_fmt, --TODO: config later from https://deno.land/
-                    require("null-ls").builtins.formatting.stylua,
-                    require("null-ls").builtins.hover.dictionary,
-                    require("null-ls").builtins.code_actions.gitsigns,
-                }
+        event = { "BufReadPre", "BufNewFile" },
+        opts = function ()
+            local null_ls = require("null-ls")
+            local code_actions = null_ls.builtins.code_actions
+            local diagnostics = null_ls.builtins.diagnostics
+            local formatting = null_ls.builtins.formatting
+            local hover = null_ls.builtins.hover
+            local completion = null_ls.builtins.completion
 
+            return {
+                sources = {
+                    completion.spell,
+                    completion.luasnip,
+
+                    diagnostics.todo_comments,
+                    diagnostics.trail_space,
+
+                    code_actions.codespell,
+                    diagnostics.codespell,
+                    formatting.codespell,
+
+                    code_actions.eslint_d,
+                    diagnostics.eslint_d,
+                    formatting.eslint_d,
+
+                    diagnostics.fish,
+                    formatting.fish_indent,
+
+                    diagnostics.mdl,
+                    diagnostics.phpcs,
+
+                    diagnostics.vale,
+
+                    formatting.black,
+
+                    formatting.deno_fmt,
+
+                    formatting.jq,
+
+                    formatting.stylua,
+
+                    hover.dictionary,
+
+                    code_actions.gitsigns,
+                }
             }
-        end
+        end,
     },
 }

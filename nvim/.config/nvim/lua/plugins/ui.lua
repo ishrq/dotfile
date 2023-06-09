@@ -31,9 +31,10 @@ return {
     --Statusline
     {
         'nvim-lualine/lualine.nvim',
-        event = "FocusGained",
+        event = "VeryLazy",
         config = function() require('lualine').setup{
             options = {
+                theme = "auto",
                 globalstatus = true,
                 icons_enabled = false,
                 component_separators = '|',
@@ -44,16 +45,26 @@ return {
     --Indent guides
     {
         'lukas-reineke/indent-blankline.nvim',
-        event = "BufEnter",
-        config = function()
-            vim.opt.list = true
-            vim.opt.listchars:append "eol:↴"
-            require("indent_blankline").setup {
-                show_end_of_line = true,
-                show_current_context = true,
-                show_current_context_start = true,
-            }
-        end
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {
+            char = "│",
+            filetype_exclude = {
+                "help",
+                "alpha",
+                "dashboard",
+                "neo-tree",
+                "Trouble",
+                "lazy",
+                "mason",
+                "notify",
+                "toggleterm",
+                "lazyterm",
+            },
+            show_trailing_blankline_indent = false,
+            show_end_of_line = true,
+            show_current_context = true,
+            show_current_context_start = true,
+        },
     },
     --Highlight window
     {

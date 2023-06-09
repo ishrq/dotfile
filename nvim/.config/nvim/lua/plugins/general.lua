@@ -24,18 +24,6 @@ return{
         event = "VeryLazy",
         config = true
     },
-    {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        event = "VeryLazy",
-        cmd = { "TodoTelescope" },
-        config = true,
-        keys = {
-            -- { "<leader>tn", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-            -- { "<leader>tp", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-            { "<leader>;", "<cmd>TodoTelescope<cr>", desc = "Todo" },
-        },
-    },
     --Lists
     {
         "gaoDean/autolist.nvim",

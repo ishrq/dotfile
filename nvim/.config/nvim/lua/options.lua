@@ -2,10 +2,6 @@
 -- Machine: PC
 
 
-
-local opt = vim.o
-
-
 --CONTEXT
 vim.o.colorcolumn    = ''
 vim.o.number         = true
@@ -15,6 +11,8 @@ vim.o.ruler          = true
 vim.o.scrolloff      = 8
 vim.o.sidescrolloff  = 4
 vim.o.signcolumn     = 'yes'
+vim.o.list           = true
+vim.o.lcs            = "eol:↴"
 
 --FILETYPE
 vim.o.encoding       = 'utf-8'
