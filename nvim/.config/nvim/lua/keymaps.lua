@@ -14,45 +14,55 @@ Leader  ; , . 0 2 3 4 6 7 c e f h i o r v w z
 Comma   , . ; / = - <space>
 ]]
 
---General
+-- General
 map('v', '.', ':normal .<CR>', { desc = "Apply repeat to selected lines"})
--- Don't leave visual mode after indenting
-map('v', '>', '>gv^', {desc = "Resume visual mode after indent"})
-map('v', '<', '<gv^', {desc = "Resume visual mode after indent"})
 map('i', '<c-f>', '<C-g>u<Esc>[S1z=`]a<c-g>u', def, {desc = "Fix spelling"})
 map("n", "<leader>=", ":set spell!<cr>", { desc = "Spelling" })
 map("n", "<leader>8", ':execute "set cc=" . (&cc == "" ? "80" : "")<cr>', def, { desc = "Column color" })
 map("n", "<leader>a", ":keepjumps normal! GVgg<cr>", def, { desc = "Select all" })
-map("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search replace current word" })
+map("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Substitute word under cursor" })
 map("n", "<leader>x", ":!chmod +x %<CR>", def, { desc = "Make file executable" })
 
---Register
+-- Better indenting
+map("v", "<", "<gv^")
+map("v", ">", ">gv^")
+
+-- Register
 map("", "gp", "`[v`]", def, { desc = "Select pasted" })
 map("", "<leader>y", ":lua require'telescope.builtin'.registers{}<cr>", def, { desc = "Search register" })
 map("x", "<leader>p", [["_dP]], { desc = "Replace selection with register" })
 
---Navigate
+-- Navigate
 map("i", "<c-h>", "<left>") --Move cursor left
 map("i", "<c-l>", "<right>") --Move cursor right
-map("", "<UP>", "gk", def)
-map("", "<DOWN>", "gj", def)
-map("n", "n", "nzzzv", def) --Center next search
-map("n", "N", "Nzzzv", def) --Center previous search
 map("n", "<C-d>", "<C-d>zz") --Center screen on up
 map("n", "<C-u>", "<C-u>zz") --Center screen on down
+map({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map("n", "n", "nzzzv", def) --Center next search
+map("n", "N", "Nzzzv", def) --Center previous search
 
---Buffer
-map("n", "]b", ":bnext<CR>", def, { desc = "Next buffer" }) map("n", "[b", ":bprevious<CR>", def, { desc = "Previous buffer" })
+
+-- Buffer
+map("n", "]b", "<cmd>bnext<CR>", def, { desc = "Next buffer" })
+map("n", "[b", "<cmd>bprevious<CR>", def, { desc = "Previous buffer" })
 map("n", "<leader>b", ":lua require'telescope.builtin'.buffers{}<cr>", def, { desc = "Search buffers" })
 
---Move text up/down
+-- Move text up/down
 map("", "J", "mzJ`z", def, { desc = "Join line w/o moving cursor" })
-map("n", "<A-j>", ":m .+1<CR>==", def, { desc = "Move line down" })
-map("n", "<A-k>", ":m .-2<CR>==", def, { desc = "Move line up" })
-map("x", "<A-j>", ":m '>+1<CR>gv-gv", def, { desc = "Move selection down" })
-map("x", "<A-k>", ":m '<-2<CR>gv-gv", def, { desc = "Move selection up" })
+map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Line down" })
+map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Line up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Line down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Line up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Line down" })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Line up" })
 
---Tabs, windows, frequent files
+-- Add undo break-points
+map("i", ",", ",<c-g>u")
+map("i", ".", ".<c-g>u")
+map("i", ";", ";<c-g>u")
+
+-- Tabs, windows, frequent files
 map("n", ",b", ":tab drop ~/ARCHIVE/Journal/backlog.txt<cr>", { desc = "Open backlog.txt" })
 map("n", ",j", ":tab drop ~/ARCHIVE/Journal/journal.txt<cr>", { desc = "Open journal.txt" })
 map("n", ",k", ":tab drop ~/.config/nvim/lua/keymaps.lua<cr>", { desc = "Open keymap.lua" })
@@ -70,21 +80,8 @@ map('n', ']t', '<CMD>tabnext<CR>', {desc = "Next tab"})
 map('n', '[T', '<CMD>tabmove -1<CR>', {desc = "Shift to previous tab"})
 map('n', ']T', '<CMD>tabmove +1<CR>', {desc = "Shift to next tab"})
 
---Telescope
-map("n", "<leader>1", ":lua require('telescope.builtin').oldfiles{}<cr>", { desc = "Search recent files" })
-map("n", "<leader>fd", ":lua require('telescope.builtin').find_files{}<cr>", { desc = "Search project files" })
-map("n", "<leader>m", ":lua require('telescope.builtin').marks{}<cr>", { desc = "Search marks" })
-map("n", "<leader>j", ":lua require('telescope.builtin').jumplist{}<cr>", { desc = "Search jumplist" })
-map("n", "<leader>k", ":lua require('telescope.builtin').keymaps{}<cr>", { desc = "Search keymaps" })
-map("n", "<leader>rg", ":lua require('telescope.builtin').live_grep{}<cr>", { desc = "Grep" })
-map("n", "z=", ":lua require('telescope.builtin').spell_suggest{}<cr>", { desc = "Spelling suggestions" })
-map("n", "<leader>;", ":TodoTelescope<cr>", { desc = "Find TODO" }) --folke/todo-comments.nvim
+-- Telescope
 map("n", "<leader>u", ":Telescope undo<cr>", { desc = "Search undotree" }) --folke/todo-comments.nvim
-
---Git
-map("n", "<leader>gf", ":lua require('telescope.builtin').git_files{}<cr>", { desc = "Search git files" })
-map("n", "<leader>gc", ":lua require('telescope.builtin').git_commits{}<cr>", { desc = "Search git commits" })
-map("n", "<leader>gs", ":lua require('telescope.builtin').git_status{}<cr>", { desc = "Search git status" })
 
 -- Diagnostic keymaps
 map("n", "[d", vim.diagnostic.goto_prev, def)
