@@ -38,26 +38,21 @@ return {
 
             -- SERVER
 
-            lspconfig.bashls.setup{} -- Bash
-            lspconfig.clangd.setup{} -- C
+
+            lspconfig.bashls.setup{} --Bash
+            lspconfig.clangd.setup{} --C
+            lspconfig.cssls.setup{capabilities=capabilities} --CSS
             lspconfig.cssmodules_ls.setup{} --CSS Modules
-            lspconfig.golangci_lint_ls.setup{} -- Go
+            lspconfig.golangci_lint_ls.setup{} --Go
+            lspconfig.html.setup{capabilities=capabilities} --HTML
+            lspconfig.jsonls.setup{capabilities = capabilities} --Json
             lspconfig.phpactor.setup{} --PHP
-            lspconfig.pylsp.setup{} -- Python
-            lspconfig.sqlls.setup{} -- SQL
+            lspconfig.pylsp.setup{} --Python
+            lspconfig.sqlls.setup{} --SQL
             lspconfig.vale_ls.setup{} --Vale
             -- lspconfig.tailwindcss.setup{} --Tailwind CSS
             -- lspconfig.tsserver.setup{} --Typescript
 
-            -- CSS
-            lspconfig.cssls.setup{
-                capabilities = capabilities,
-            }
-
-            -- HTML
-            lspconfig.html.setup{
-                capabilities = capabilities,
-            }
 
             -- JS
             lspconfig.eslint.setup{
@@ -69,10 +64,6 @@ return {
                 end,
             }
 
-            -- Json
-            lspconfig.jsonls.setup{
-                capabilities = capabilities,
-            }
 
             -- Lua
             lspconfig.lua_ls.setup {
