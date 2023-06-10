@@ -1,7 +1,3 @@
--- Author: IA
--- Device: PC
-
-
 return {
     {
         "neovim/nvim-lspconfig",

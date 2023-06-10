@@ -1,7 +1,3 @@
--- Author: IA
--- Device: PC
-
-
 return {
     {
         "L3MON4D3/LuaSnip",

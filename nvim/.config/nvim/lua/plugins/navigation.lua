@@ -1,6 +1,3 @@
--- Author: IA
--- Device: PC
-
 return {
     --Fuzzy search
     {

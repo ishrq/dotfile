@@ -1,7 +1,3 @@
--- Author: IA
--- Device: PC
-
-
 return {
     'lewis6991/gitsigns.nvim',
     event = 'VeryLazy',

@@ -1,7 +1,3 @@
---Author: IA
---Device: PC
-
-
 return {
     { "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",

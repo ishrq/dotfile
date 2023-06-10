@@ -1,7 +1,3 @@
--- Author: IA
--- Machine: PC
-
-
 return{
     --General
     {

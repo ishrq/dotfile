@@ -1,7 +1,3 @@
--- Author: IA
--- Machine: PC
-
-
 --CONTEXT
 vim.o.colorcolumn    = ''
 vim.o.number         = true
