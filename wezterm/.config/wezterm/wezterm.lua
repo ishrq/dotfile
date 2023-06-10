@@ -15,7 +15,7 @@ local config = {
 
     -- VISUAL
 
-    color_scheme = "astromouse (terminal.sexy)",
+    color_scheme = "Everblush",
     inactive_pane_hsb = { hue = 1.0, saturation = 0.4, brightness = 0.9 },
     hide_tab_bar_if_only_one_tab = true,
     use_fancy_tab_bar = false,
