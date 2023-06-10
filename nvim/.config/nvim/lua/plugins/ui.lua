@@ -1,12 +1,10 @@
 return {
     --Colorscheme
     {
-        "sainnhe/everforest",
+        'Everblush/nvim',
+        name = 'everblush',
         config = function ()
-            vim.opt.termguicolors = true
-            vim.g.everforest_background = "hard"
-            vim.g.everforest_disable_italic_comment = true
-            vim.cmd.colorscheme("everforest")
+            vim.cmd.colorscheme("everblush")
         end
     },
     --Statusline
