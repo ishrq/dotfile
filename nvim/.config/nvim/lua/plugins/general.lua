@@ -3,23 +3,6 @@ return{
     {
         "nvim-lua/plenary.nvim",
     },
-    --Surroundings
-    {
-        "kylechui/nvim-surround",
-        event = "InsertEnter",
-        config = true
-    },
-    {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        config = true
-    },
-    --Comments
-    {
-        "numToStr/Comment.nvim",
-        event = "VeryLazy",
-        config = true
-    },
     --Lists
     {
         "gaoDean/autolist.nvim",

@@ -37,22 +37,6 @@ map("i", "<c-l>", "<right>")
 map({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", {expr=true, silent=true })
 map({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", {expr=true, silent=true })
 
--- Buffer
-map("n", "]b", "<cmd>bnext<CR>", def, {desc="Next buffer"})
-map("n", "[b", "<cmd>bprevious<CR>", def, {desc="Previous buffer"})
-
--- Quickfix
-map("n", "]q", '<cmd>cn<cr>', def, {desc="Next quickfix"})
-map("n", "[q", '<cmd>cp<cr>', def, {desc="Previous quickfix"})
-
--- Move text up/down
-map("n", "<A-j>", "<cmd>m .+1<cr>==", {desc="Line down"})
-map("n", "<A-k>", "<cmd>m .-2<cr>==", {desc="Line up"})
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", {desc="Line down"})
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", {desc="Line up"})
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", {desc="Line down"})
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", {desc="Line up"})
-
 -- Less cursor movement
 map("", "J", "mzJ`z")
 map("n", "<C-d>", "<C-d>zz")
@@ -72,11 +56,8 @@ map("i", ";", ";<c-g>u")
 map("n", ",b", ":tab drop ~/ARCHIVE/Journal/backlog.txt<cr>", {desc="Open backlog.txt"})
 map("n", ",j", ":tab drop ~/ARCHIVE/Journal/journal.txt<cr>", {desc="Open journal.txt"})
 map("n", ",k", ":tab drop ~/.config/nvim/lua/keymaps.lua<cr>", {desc="Open keymap.lua"})
-map('n', ']t', '<cmd>tabmove +1<cr>', {desc="Swap tab with next"})
-map('n', '[t', '<cmd>tabmove -1<cr>', {desc="Swap tab with previous"})
+map('n', '<leader>tl', '<cmd>tabmove +1<cr>', {desc="Swap tab with next"})
+map('n', '<leader>th', '<cmd>tabmove -1<cr>', {desc="Swap tab with previous"})
 
 -- Diagnostic keymaps
-map("n", "]d", vim.diagnostic.goto_next, def, {desc="Next diagnostic"})
-map("n", "[d", vim.diagnostic.goto_prev, def, {desc="Previous diagnostic"})
 map('n', '<leader>e', vim.diagnostic.open_float)
--- map('n', '<leader>q', vim.diagnostic.setloclist, def)
