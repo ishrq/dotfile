@@ -1,11 +1,10 @@
 return {
-    --Fuzzy search
     {
         "nvim-telescope/telescope.nvim",
         event = "VeryLazy",
         cmd = "Telescope",
         dependencies = {
-            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make", event = "VeryLazy" },
             "debugloop/telescope-undo.nvim",
         },
         opts = {
