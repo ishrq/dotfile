@@ -13,8 +13,12 @@ return {
             require('mini.pairs').setup()
 
             -- require('mini.align').setup()
-            -- require('mini.hipatterns').setup()
             -- require('mini.splitjoin').setup()
+
+            require('mini.indentscope').setup{
+                draw = { animation = require('mini.indentscope').gen_animation.none() },
+                symbol = "│",
+            }
 
             require('mini.surround').setup{
                 mappings = {
