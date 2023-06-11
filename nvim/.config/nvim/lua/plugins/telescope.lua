@@ -20,6 +20,7 @@ return {
         config = function()
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("undo")
+            vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>", {desc = "Telescope Undo"})
         end,
         keys = {
             {
