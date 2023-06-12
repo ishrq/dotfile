@@ -2,7 +2,7 @@ return {
     {
         'echasnovski/mini.nvim',
         version = false,
-        event = 'VeryLazy',
+        -- event = 'VeryLazy',
         config = function ()
 
             require('mini.bracketed').setup()
@@ -11,6 +11,7 @@ return {
             require('mini.jump').setup()
             require('mini.move').setup()
             require('mini.pairs').setup()
+            require('mini.statusline').setup()
 
             -- require('mini.align').setup()
             -- require('mini.splitjoin').setup()
