@@ -1,4 +1,5 @@
 return {
+    -- https://github.com/echasnovski/mini.nvim
     {
         'echasnovski/mini.nvim',
         version = false,
@@ -35,6 +36,13 @@ return {
                         '()%d%d%d%d%/%d%d%/%d%d()',
                         '()%d%d-%d%d%-%d%d%d%d()',
                         '()%d%d/%d%d%/%d%d%d%d()',
+                    }},
+
+                    --url
+                    --NOTE: doesn't work for last/next yet
+                    u = {{
+                        '()https://.*()',
+                        '()http://.*()',
                     }},
 
                     --all lines in buffer
