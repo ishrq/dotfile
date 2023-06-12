@@ -1,4 +1,5 @@
 return {
+    -- https://github.com/neovim/nvim-lspconfig
     {
         "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
@@ -12,47 +13,32 @@ return {
                 underline = true,
                 update_in_inset = false,
                 severity_sort = true,
-                virtual_text = {
-                    spacing = 4,
-                    source = "if_many",
-                    prefix = "●"
-                },
+                virtual_text = { spacing = 4, source = "if_many", prefix = "●" },
             },
             -- auto format on save
             autoformat = true,
             format_notify = false,
-            format = {
-                formatting_options = nil,
-                timeout_ms = nil,
-            },
+            format = { formatting_options = nil, timeout_ms = nil, },
         },
-        config = function()
+        config = function ()
+
+            -- Language server setup
+
             local lspconfig = require('lspconfig')
-            local lsp_defaults = lspconfig.util.default_config
-
-            lsp_defaults.capabilities = vim.tbl_deep_extend( 'force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-            --Enable (broadcasting) snippet capability for completion
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-            -- SERVER
-
 
             lspconfig.bashls.setup{} --Bash
-            lspconfig.clangd.setup{} --C
             lspconfig.cssls.setup{capabilities=capabilities} --CSS
             lspconfig.cssmodules_ls.setup{} --CSS Modules
-            lspconfig.golangci_lint_ls.setup{} --Go
             lspconfig.html.setup{capabilities=capabilities} --HTML
             lspconfig.jsonls.setup{capabilities = capabilities} --Json
             lspconfig.phpactor.setup{} --PHP
             lspconfig.pylsp.setup{} --Python
-            lspconfig.sqlls.setup{} --SQL
             lspconfig.vale_ls.setup{} --Vale
+            -- lspconfig.clangd.setup{} --C
+            -- lspconfig.golangci_lint_ls.setup{} --Go
+            -- lspconfig.sqlls.setup{} --SQL
             -- lspconfig.tailwindcss.setup{} --Tailwind CSS
             -- lspconfig.tsserver.setup{} --Typescript
-
 
             -- JS
             lspconfig.eslint.setup{
@@ -63,7 +49,6 @@ return {
                     })
                 end,
             }
-
 
             -- Lua
             lspconfig.lua_ls.setup {
@@ -76,6 +61,29 @@ return {
                     },
                 },
             }
+
+            local lsp_defaults = lspconfig.util.default_config
+
+            lsp_defaults.capabilities = vim.tbl_deep_extend( 'force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+            --Enable (broadcasting) snippet capability for completion
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+            local on_attach_custom = function(client, bufnr)
+                local function buf_set_option(name, value) vim.api.nvim_buf_set_option(bufnr, name, value) end
+
+                buf_set_option('omnifunc', 'v:lua.MiniCompletion.completefunc_lsp')
+
+                -- Currently all formatting is handled with 'null-ls' plugin
+                if vim.fn.has('nvim-0.8') == 1 then
+                    client.server_capabilities.documentFormattingProvider = false
+                    client.server_capabilities.documentRangeFormattingProvider = false
+                else
+                    client.resolved_capabilities.document_formatting = false
+                    client.resolved_capabilities.document_range_formatting = false
+                end
+            end
 
             -- Use LspAttach autocommand to only map the following keys
             -- after the language server attaches to the current buffer
