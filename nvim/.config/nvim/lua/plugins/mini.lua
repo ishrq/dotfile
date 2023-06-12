@@ -8,7 +8,6 @@ return {
             require('mini.bracketed').setup()
             require('mini.comment').setup()
             require('mini.cursorword').setup()
-            require('mini.jump').setup()
             require('mini.move').setup()
             require('mini.pairs').setup()
             require('mini.statusline').setup()
@@ -53,6 +52,10 @@ return {
             require('mini.indentscope').setup{
                 draw = { animation = require('mini.indentscope').gen_animation.none() },
                 symbol = "│",
+            }
+
+            require('mini.jump').setup{
+                delay = { idle_stop = 10 }
             }
 
             require('mini.surround').setup{
