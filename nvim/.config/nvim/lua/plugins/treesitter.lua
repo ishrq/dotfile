@@ -1,4 +1,5 @@
 return {
+    -- https://github.com/nvim-treesitter/nvim-treesitter
     { "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
@@ -61,6 +62,7 @@ return {
         require("nvim-treesitter.configs").setup(opts)
     end
 },
+-- https://github.com/nvim-treesitter/nvim-treesitter-context
 {
     "nvim-treesitter/nvim-treesitter-context",
     event = "VimEnter",

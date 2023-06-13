@@ -1,11 +1,17 @@
 return {
+    -- https://github.com/nvim-telescope/telescope.nvim
     {
-        "nvim-telescope/telescope.nvim",
-        event = "VeryLazy",
-        cmd = "Telescope",
+        'nvim-telescope/telescope.nvim',
+        event = 'VeryLazy',
+        cmd = 'Telescope',
         dependencies = {
-            { "nvim-telescope/telescope-fzf-native.nvim", build = "make", event = "VeryLazy" },
-            "debugloop/telescope-undo.nvim",
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                build = 'make',
+                event = 'VeryLazy'
+            },
+            'debugloop/telescope-undo.nvim',
+            'nvim-lua/plenary.nvim'
         },
         opts = {
             defaults = {

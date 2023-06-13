@@ -1,8 +1,4 @@
 return{
-    --General
-    {
-        "nvim-lua/plenary.nvim",
-    },
     -- https://github.com/tzachar/highlight-undo.nvim
     {
         'tzachar/highlight-undo.nvim',
@@ -28,7 +24,7 @@ return{
             autolist.create_mapping_hook('n', '<leader>x', autolist.invert_entry, "")
         end,
     },
-    --Preview colors
+    -- https://github.com/norcalli/nvim-colorizer.lua
     {
         "NvChad/nvim-colorizer.lua",
         ft = {"html","css","js","lua"},
