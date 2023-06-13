@@ -11,9 +11,9 @@ return {
             require('mini.cursorword').setup()
             require('mini.move').setup()
             require('mini.pairs').setup()
+            require('mini.splitjoin').setup()
             require('mini.statusline').setup()
 
-            -- require('mini.splitjoin').setup()
 
             require('mini.ai').setup{
                 custom_textobjects = {
