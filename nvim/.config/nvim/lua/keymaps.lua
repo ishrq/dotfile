@@ -13,8 +13,11 @@ map('i', '<C-z>', '<C-g>u<Esc>[S1z=`]a<C-g>u', {desc='Fix spelling'})
 map('n', '<Leader>=', ':set spell!<CR>', {desc='Toggle spell check'})
 map('n', '<Leader>8', ':execute "set cc=" . (&cc == "" ? "80" : "")<CR>', def, {desc="Toggle character column"})
 map('n', '<Leader>r', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc='Replace current word'})
-map('n', '<Leader>x', ":!chmod +x %<CR>", def, {desc='Make executable'})
 map('x', 'g/', '<Esc>/\\%V', {silent=false, desc='Search inside selection'})
+
+--NOTE: use the new command mode abbr?
+-- map('n', '<Leader>x', ":!chmod +x %<CR>", def, {desc='Make executable'})
+
 -- Search visually selected text
 map('x', '*', [[y/\V<C-R>=escape(@", '/\')<CR><CR>]])
 map('x', '#', [[y?\V<C-R>=escape(@", '?\')<CR><CR>]])
