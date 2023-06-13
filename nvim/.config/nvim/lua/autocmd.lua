@@ -58,11 +58,11 @@ autocmd('BufRead', {
 
 --Markdown/gitcommit
 autocmd('FileType', {
-	pattern = { "gitcommit", "markdown", "text", "log" },
-	callback = function()
-		vim.opt_local.wrap = true
-		vim.opt_local.spell = true
-	end,
+    pattern = { "gitcommit", "markdown", "text", "log" },
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.spell = true
+    end,
 })
 
 --Fold
