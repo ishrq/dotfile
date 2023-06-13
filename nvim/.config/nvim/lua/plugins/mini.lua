@@ -6,7 +6,6 @@ return {
         -- event = 'VeryLazy',
         config = function ()
 
-            require('mini.bracketed').setup()
             require('mini.comment').setup()
             require('mini.cursorword').setup()
             require('mini.move').setup()
@@ -31,8 +30,17 @@ return {
                 }
             }
 
+            require('mini.bracketed').setup{
+                file = { suffix = '' },
+                oldfile = { suffix = '' },
+                undo = { suffix = '' },
+                yank = { suffix = '' },
+            }
+
             require('mini.indentscope').setup{
-                draw = { animation = require('mini.indentscope').gen_animation.none() },
+                draw = {
+                    animation = require('mini.indentscope').gen_animation.none()
+                },
                 symbol = "│",
             }
 
@@ -44,13 +52,13 @@ return {
                 mappings = {
                     add = 'ys',
                     delete = 'ds',
-                    find = '', -- Find surrounding right
-                    find_left = '', -- Find surrounding (left)
-                    highlight = '', -- Highlight surrounding
-                    replace = 'cs', -- Replace surrounding
-                    update_n_lines = '', -- Change number of lines
-                    suffix_last = 'l', -- Suffix to search prev
-                    suffix_next = 'n', -- Suffix to search next
+                    find = 's',
+                    find_left = 'S',
+                    highlight = '',
+                    replace = 'cs',
+                    update_n_lines = '',
+                    suffix_last = 'l',
+                    suffix_next = 'n',
                 },
             }
         end
