@@ -13,7 +13,7 @@ return {
             require('mini.pairs').setup()
             require('mini.splitjoin').setup()
             require('mini.statusline').setup()
-
+            require('mini.trailspace').setup()
 
             require('mini.ai').setup{
                 custom_textobjects = {
@@ -35,6 +35,14 @@ return {
                 oldfile = { suffix = '' },
                 undo    = { suffix = '' },
                 yank    = { suffix = '' },
+            }
+
+            require('mini.hipatterns').setup{
+                highlighters = {
+                    hex_color = require('mini.hipatterns').gen_highlighter.hex_color(), --hex color
+                    date      = { pattern = '()%d%d%d%d[-|/]%d%d[-|/]%d%d()' },
+                    url       = { pattern = 'https://[%www.][%S]+', 'http://[%S]+'},
+                },
             }
 
             require('mini.indentscope').setup{

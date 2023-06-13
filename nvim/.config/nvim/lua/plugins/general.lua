@@ -2,9 +2,8 @@ return{
     -- https://github.com/tzachar/highlight-undo.nvim
     {
         'tzachar/highlight-undo.nvim',
-        config = function()
-            require('highlight-undo').setup()
-        end
+        event = 'VeryLazy',
+        config = true
     },
     -- https://github.com/gaoDean/autolist.nvim
     {
@@ -26,9 +25,9 @@ return{
     },
     -- https://github.com/norcalli/nvim-colorizer.lua
     {
-        "NvChad/nvim-colorizer.lua",
-        ft = {"html","css","js","lua"},
-        cmd = "Colorizer",
+        'NvChad/nvim-colorizer.lua',
+        ft = {'html','css','js','lua'},
+        cmd = 'Colorizer',
         config = true
     },
 }

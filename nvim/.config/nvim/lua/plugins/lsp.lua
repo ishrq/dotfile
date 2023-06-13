@@ -1,8 +1,8 @@
 return {
     -- https://github.com/neovim/nvim-lspconfig
     {
-        "neovim/nvim-lspconfig",
-        event = { "BufReadPre", "BufNewFile" },
+        'neovim/nvim-lspconfig',
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp', event = 'VeryLazy' },
             { 'williamboman/mason-lspconfig.nvim', dependencies = { 'williamboman/mason.nvim', config = true }, },
@@ -13,7 +13,7 @@ return {
                 underline = true,
                 update_in_inset = false,
                 severity_sort = true,
-                virtual_text = { spacing = 4, source = "if_many", prefix = "●" },
+                virtual_text = { spacing = 4, source = 'if_many', prefix = '●' },
             },
             -- auto format on save
             autoformat = true,
@@ -43,9 +43,9 @@ return {
             -- JS
             lspconfig.eslint.setup{
                 on_attach = function(client, bufnr)
-                    vim.api.nvim_create_autocmd("BufWritePre", {
+                    vim.api.nvim_create_autocmd('BufWritePre', {
                         buffer = bufnr,
-                        command = "EslintFixAll",
+                        command = 'EslintFixAll',
                     })
                 end,
             }
@@ -56,7 +56,7 @@ return {
                     Lua = {
                         runtime = { version = 'LuaJIT', },
                         diagnostics = { globals = {'vim'}, },
-                        workspace = { library = vim.api.nvim_get_runtime_file("", true), },
+                        workspace = { library = vim.api.nvim_get_runtime_file('', true), },
                         telemetry = { enable = false, },
                     },
                 },
