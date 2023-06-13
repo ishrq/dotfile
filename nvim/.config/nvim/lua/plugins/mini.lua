@@ -6,13 +6,13 @@ return {
         -- event = 'VeryLazy',
         config = function ()
 
+            require('mini.align').setup()
             require('mini.comment').setup()
             require('mini.cursorword').setup()
             require('mini.move').setup()
             require('mini.pairs').setup()
             require('mini.statusline').setup()
 
-            -- require('mini.align').setup()
             -- require('mini.splitjoin').setup()
 
             require('mini.ai').setup{
@@ -31,10 +31,10 @@ return {
             }
 
             require('mini.bracketed').setup{
-                file = { suffix = '' },
+                file    = { suffix = '' },
                 oldfile = { suffix = '' },
-                undo = { suffix = '' },
-                yank = { suffix = '' },
+                undo    = { suffix = '' },
+                yank    = { suffix = '' },
             }
 
             require('mini.indentscope').setup{
@@ -50,15 +50,15 @@ return {
 
             require('mini.surround').setup{
                 mappings = {
-                    add = 'ys',
-                    delete = 'ds',
-                    find = 's',
-                    find_left = 'S',
-                    highlight = '',
-                    replace = 'cs',
+                    add            = 'ys',
+                    delete         = 'ds',
+                    find           = 's',
+                    find_left      = 'S',
+                    highlight      = '',
+                    replace        = 'cs',
                     update_n_lines = '',
-                    suffix_last = 'l',
-                    suffix_next = 'n',
+                    suffix_last    = 'l',
+                    suffix_next    = 'n',
                 },
             }
         end
