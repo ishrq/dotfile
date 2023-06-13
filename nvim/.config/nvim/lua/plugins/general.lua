@@ -9,6 +9,7 @@ return{
     {
         'gaoDean/autolist.nvim',
         ft = {'markdown', 'text', 'tex', 'plaintex'},
+        event = 'InsertEnter',
         config = function()
             local autolist = require('autolist')
             autolist.setup()
