@@ -24,7 +24,7 @@ return {
                     diagnostics.fish,
                     diagnostics.phpcs,
                     diagnostics.todo_comments,
-                    -- diagnostics.trail_space,
+                    diagnostics.trail_space,
                     diagnostics.write_good,
                     formatting.black,
                     formatting.codespell,
