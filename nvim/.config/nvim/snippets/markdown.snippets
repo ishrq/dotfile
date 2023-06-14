@@ -15,24 +15,35 @@ snippet rel
 snippet src
     Source
     ---
+    $0
 
 snippet srcp
-    Source
     ---
+    Source
     [${1:Title}](`@+`)
-
 
 snippet link
-    [${1:Title}](${2:URL})
+    [${1:Alt text}](${2:URL})
 
 snippet linkc
-    [${1:Title}](`@+`)
+    [${1:Alt text}](`@+`)
 
 snippet url
     <$1>$0
 
 snippet img
-    ![${1:alt text}](${2:path})$0
+    ![${1:Alt text}](${2:path})$0
+
+snippet references
+    ---
+    Reference
+    $0
+
+snippet label
+    [${1:Label}]: <${2:URL}> "${3:Title}"
+
+snippet ref
+    <sup>[${1:Label}]</sup>
 
 snippet strikethrough
     ~~$1~~$0
@@ -58,10 +69,28 @@ snippet codeblock
     ```
 
 snippet subscript
-    $1<sub>$0
+    <sub>$1</sub>
 
 snippet superscript
-    $1<sup>$0
+    <sup>$1</sup>
+
+snippet h1
+    # $1
+
+snippet h2
+    ## $1
+
+snippet h3
+    ### $1
+
+snippet h4
+    #### $1
+
+snippet h5
+    ##### $1
+
+snippet h6
+    ####### $1
 
 snippet ul
     - $1

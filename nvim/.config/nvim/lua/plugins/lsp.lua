@@ -33,7 +33,6 @@ return {
             lspconfig.jsonls.setup{capabilities = capabilities} --Json
             lspconfig.phpactor.setup{} --PHP
             lspconfig.pylsp.setup{} --Python
-            lspconfig.vale_ls.setup{} --Vale
             -- lspconfig.clangd.setup{} --C
             -- lspconfig.golangci_lint_ls.setup{} --Go
             -- lspconfig.sqlls.setup{} --SQL
