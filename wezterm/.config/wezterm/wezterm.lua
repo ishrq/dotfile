@@ -67,9 +67,9 @@ local config = {
         { key = 'J', mods = 'CTRL', action = act.ScrollByLine(1) },
 
         -- Font size
-        { key = '0', mods = 'CTRL', action=act.ResetFontSize},
-        { key = '=', mods = 'CTRL', action=act.IncreaseFontSize},
-        { key = '-', mods = 'CTRL', action=act.DecreaseFontSize},
+        { key = '0', mods = 'LEADER', action=act.ResetFontSize},
+        { key = '=', mods = 'LEADER', action=act.IncreaseFontSize},
+        { key = '-', mods = 'LEADER', action=act.DecreaseFontSize},
 
         -- Panes
         { key = 'h', mods = 'LEADER', action = act.SplitPane { direction = 'Left' } },
