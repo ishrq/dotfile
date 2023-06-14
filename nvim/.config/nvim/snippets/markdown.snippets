@@ -1,49 +1,39 @@
-snippet permanote
+snippet pn permanent note
     ---
     Type: Permanent Note
-    Topic: ${1: CS}
+    Topic: ${1:CS}
     Title: $2
     Related:$3
     ---
 
 
+    # $2
+
     $0
 
-snippet rel
+snippet rel related files
     [[./$1]]
 
-snippet src
-    Source
-    ---
-    $0
-
-snippet srcp
-    ---
-    Source
-    [${1:Title}](`@+`)
-
 snippet link
-    [${1:Alt text}](${2:URL})
+    [${1:Alt}](${2:URL})
 
-snippet linkc
-    [${1:Alt text}](`@+`)
+snippet qlink paste link
+    [${1:Alt}](${2:`@+`})
 
 snippet url
     <$1>$0
 
-snippet img
-    ![${1:Alt text}](${2:path})$0
+snippet qurl
+    <${1:`@+`}>$0
 
-snippet references
-    ---
-    Reference
-    $0
+snippet img image
+    ![${1:Alt}](${2:Path})$0
 
-snippet label
-    [${1:Label}]: <${2:URL}> "${3:Title}"
+snippet fr footnote reference
+    [^${1:ID}]: $2
 
-snippet ref
-    <sup>[${1:Label}]</sup>
+snippet fn footnote
+    [^${1:ID}]
 
 snippet strikethrough
     ~~$1~~$0
@@ -61,18 +51,25 @@ snippet quote
     > $1
 
 snippet code
-    `$1`$0
+    `$1`
 
 snippet codeblock
     ```${1:language}"
-    $0
+    $2
     ```
 
-snippet subscript
-    <sub>$1</sub>
+snippet sub subscript
+    <sub>1</sub>
 
-snippet superscript
-    <sup>$1</sup>
+snippet sup superscript
+    <sup>1</sup>
+
+snippet task
+    - [${1: }] $2
+
+snippet def definition
+    ${1: Term}
+    : ${2: Definition}
 
 snippet h1
     # $1
@@ -92,16 +89,6 @@ snippet h5
 snippet h6
     ####### $1
 
-snippet ul
-    - $1
-    - $2
-    - $3
-
-snippet ol
-    1. $1
-    2. $2
-    3. $3
-
 snippet table
     | ${1:Column1}    | ${2:Column2}    | ${3:Column3}    |
     |---------------- | --------------- | --------------- |
@@ -110,7 +97,7 @@ snippet table
     | ${10:Item1.3}   | ${11:Item2.3}   | ${12:Item3.3}   |
     ${0}
 
-snippet 4x1table
+snippet table4x1
     | ${1:Column1}  |
     |-------------- |
     | ${2:Item1}    |
@@ -118,7 +105,7 @@ snippet 4x1table
     | ${4:Item3}    |
     "${0}"
 
-snippet 4x2table
+snippet table4x2
     | ${1:Column1}   | ${2:Column2}    |
     |--------------- | --------------- |
     | ${3:Item1.1}   | ${4:Item2.1}    |
@@ -126,7 +113,7 @@ snippet 4x2table
     | ${7:Item1.3}   | ${8:Item2.3}    |
     ${0}
 
-snippet 4x4table
+snippet tabel4x4
      | ${1:Column1}    | ${2:Column2}    | ${3:Column3}    | ${4:Column4}    |
      |---------------- | --------------- | --------------- | --------------- |
      | ${5:Item1.1}    | ${6:Item2.1}    | ${7:Item3.1}    | ${8:Item4.1}    |
