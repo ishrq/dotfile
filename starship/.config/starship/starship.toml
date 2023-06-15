@@ -28,6 +28,7 @@ truncation_symbol = "…/"
 
 [directory.substitutions]
 "~/INBOX" = " "
+"~/ARCHIVE" = " "
 
 [docker_context]
 symbol = " "
