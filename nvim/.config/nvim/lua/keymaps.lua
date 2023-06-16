@@ -66,9 +66,9 @@ map('i', '.', '.<C-g>u')
 map('i', ';', ';<C-g>u')
 
 -- Tabs, windows, frequent files
-map('n', ',b', ":tab drop ~/ARCHIVE/Journal/backlog.txt<CR>", {desc='Open backlog.txt'})
-map('n', ',j', ":tab drop ~/ARCHIVE/Journal/journal.txt<CR>", {desc='Open journal.txt'})
-map('n', ',k', ":tab drop ~/.config/nvim/lua/keymaps.lua<CR>", {desc='Open keymap.lua'})
+map('n', '\\b', ":tab drop ~/ARCHIVE/Journal/backlog.txt<CR>", {desc='Open backlog.txt'})
+map('n', '\\j', ":tab drop ~/ARCHIVE/Journal/journal.txt<CR>", {desc='Open journal.txt'})
+map('n', '\\k', ":tab drop ~/.config/nvim/lua/keymaps.lua<CR>", {desc='Open keymap.lua'})
 -- map('n', '<Leader>tl', '<Cmd>tabmove +1<CR>', {desc='Swap tab with next'})
 -- map('n', '<Leader>th', '<Cmd>tabmove -1<CR>', {desc='Swap tab with previous'})
 
