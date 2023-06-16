@@ -74,6 +74,7 @@ map('n', '\\k', ":tab drop ~/.config/nvim/lua/keymaps.lua<CR>", {desc='Open keym
 
 -- Diagnostic keymaps
 map('n', '<Leader>e', vim.diagnostic.open_float)
+-- map('n', '<leader>q', vim.diagnostic.setloclist, def)
 
 
 -- Custom text object
