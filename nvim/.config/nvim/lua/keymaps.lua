@@ -72,9 +72,6 @@ map('n', ',k', ":tab drop ~/.config/nvim/lua/keymaps.lua<CR>", {desc='Open keyma
 -- Diagnostic keymaps
 map('n', '<Leader>e', vim.diagnostic.open_float)
 
--- markdown-preview.nvim
-map('n', '<C-p>', '<Plug>MarkdownPreviewToggle', {desc='Markdown Preview'})
-
 -- mini.nvim: mini.ai
 map('n', ']a', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'a')<CR>", def, {desc='Next argument'})
 map('n', '[a', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'a', {search_method='prev'})<CR>", def, {desc='Previous argument'})
