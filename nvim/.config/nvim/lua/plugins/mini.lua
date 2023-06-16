@@ -17,13 +17,11 @@ return {
 
             require('mini.ai').setup{
                 custom_textobjects = {
-                    c = { '()%S()' }, --character
-                    C = { { '%u[%l%d]+%f[^%l%d]', '%f[%S][%l%d]+%f[^%l%d]', '%f[%P][%l%d]+%f[^%l%d]', '^[%l%d]+%f[^%l%d]', }, '^().*()$' }, --word supporting camelCase and _underscores
-                    d = {{ '()%d%d%d%d[-|/]%d%d[-|/]%d%d()', '()%d%d[-|/]%d%d[-|/]%d%d%d%d()', }}, --date
-                    u = {{ 'https://[%www.][%S]+', 'http://[%www.][%S]+' }}, --url
+                    D = {{ '()%d%d%d%d[-|/]%d%d[-|/]%d%d()', '()%d%d[-|/]%d%d[-|/]%d%d%d%d()', }}, --date
+                    U = {{ 'https://[%www.][%S]+', 'http://[%www.][%S]+' }}, --url
                     x = { '%f[%d]%d+' }, --number
 
-                    --all lines in buffer
+                    --entire buffer
                     B = function()
                         local from = { line = 1, col = 1 }
                         local to = { line = vim.fn.line('$'), col = math.max(vim.fn.getline('$'):len(), 1) }
@@ -33,11 +31,22 @@ return {
                 }
             }
 
+            --TODO: test
             require('mini.bracketed').setup{
-                file    = { suffix = '' },
-                oldfile = { suffix = '' },
-                undo    = { suffix = '' },
-                yank    = { suffix = '' },
+                buffer     = { suffix = 'b', options = {} },
+                comment    = { suffix = 'c', options = {} },
+                conflict   = { suffix = 'x', options = {} },
+                diagnostic = { suffix = 'e', options = {} },
+                file       = { suffix = '', options = {} },
+                indent     = { suffix = 'i', options = {} },
+                jump       = { suffix = 'j', options = {} },
+                location   = { suffix = 'l', options = {} },
+                oldfile    = { suffix = '', options = {} },
+                quickfix   = { suffix = 'q', options = {} },
+                treesitter = { suffix = 't', options = {} },
+                undo       = { suffix = '', options = {} },
+                window     = { suffix = 'w', options = {} },
+                yank       = { suffix = '', options = {} },
             }
 
             require('mini.hipatterns').setup{
@@ -63,8 +72,8 @@ return {
                 mappings = {
                     add            = 'ys',
                     delete         = 'ds',
-                    find           = 's',
-                    find_left      = 'S',
+                    find           = '',
+                    find_left      = '',
                     highlight      = '',
                     replace        = 'cs',
                     update_n_lines = '',
