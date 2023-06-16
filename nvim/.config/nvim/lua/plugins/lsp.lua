@@ -15,15 +15,13 @@ return {
 
         },
         opts = {
-            -- vim.diagnostic.config
             diagnostics = {
                 underline = true,
                 update_in_inset = false,
                 severity_sort = true,
                 virtual_text = { spacing = 4, source = 'if_many', prefix = '●' },
             },
-
-            -- auto format on save
+            capabilities = {},
             autoformat = true,
             format_notify = false,
             format = { formatting_options = nil, timeout_ms = nil, },
@@ -64,8 +62,8 @@ return {
                     },
                 },
             }
-
         },
+        -- setup = {},
         config = function ()
             local lspconfig = require('lspconfig')
 
