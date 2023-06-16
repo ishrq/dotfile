@@ -15,7 +15,6 @@ fish/.config/fish/functions/man.fish
 fish/.config/fish/functions/spnge_*.fish
 git/.config/git/config.local
 mpv/.config/mpv/watch_later/
-newsboat/.config/newsboat/config_phone
 newsboat/.config/newsboat/urls
 newsboat/.config/newsboat/urls-alt
 newsboat/.config/newsboat/urls-video
