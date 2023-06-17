@@ -11,13 +11,15 @@ map('', 'gV', '`[v`]', def, {desc='Select yanked/pasted/modified text'})
 map('i', '<C-z>', '<C-g>u<Esc>[S1z=`]a<C-g>u', {desc='Fix spelling'})
 map('n', '<Leader>=', ':set spell!<CR>', {desc='Toggle spell check'})
 map('n', '<Leader>8', ':execute "set cc=" . (&cc == "" ? "80" : "")<CR>', def, {desc="Toggle character column"})
-map('n', '<Leader>r', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc='Replace current word'})
 map('v', '.', ':normal .<CR>', {desc='Visual mode dot repeat'})
 map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<cr>', { silent=true, desc='Split line' })
 map('x', 'g/', '<Esc>/\\%V', {silent=false, desc='Search inside selection'})
 
---NOTE: use the new command mode abbr?
+-- NOTE: use the new command mode abbr?
 -- map('n', '<Leader>x', ":!chmod +x %<CR>", def, {desc='Make executable'})
+
+-- NOTE: familiarize using 'C-r C-w' instead
+-- map('n', '<Leader>r', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc='Replace current word'})
 
 -- Search visually selected text
 map('x', '*', [[y/\V<C-R>=escape(@", '/\')<CR><CR>]])
@@ -78,8 +80,12 @@ map('n', '\\k', ":tab drop ~/.config/nvim/lua/keymaps.lua<CR>", {desc='Open keym
 map('n', '<Leader>e', vim.diagnostic.open_float)
 -- map('n', '<leader>q', vim.diagnostic.setloclist, def)
 
+-- mini.trailspace
+map('n', '<Leader>t', '<Cmd>lua MiniTrailspace.trim()<CR>', {desc='Trim trailspace'})
+map('n', '<Leader>T', '<Cmd>lua MiniTrailspace.trim_last_lines()<CR>', {desc='Trim trail lines'})
+-- map('n', '<Leader>t', '<Cmd>%s/\\s\\+$//e<CR>', {desc='Trim trailspace'})
 
--- Custom text object
+-- Textobjects
 
 -- Around line: with leading and trailing whitespace
 -- map('v', 'al', ':<c-u>silent! normal! 0v$<cr>', { silent = true })
@@ -89,17 +95,13 @@ map('n', '<Leader>e', vim.diagnostic.open_float)
 -- map('v', 'il', ':<c-u>silent! normal! ^vg_<cr>', { silent = true })
 -- map('o', 'il', ':normal vil<cr>', { noremap = false, silent = true })
 
--- mini.nvim: mini.ai
-map('n', ']a', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'a')<CR>", def, {desc='Next argument'})
-map('n', '[a', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'a', {search_method='prev'})<CR>", def, {desc='Previous argument'})
-map('n', ']d', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'D')<CR>", def, {desc='Next date'})
-map('n', '[d', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'D', {search_method='prev'})<CR>", def, {desc='Previous date'})
-map('n', ']f', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'f')<CR>", def, {desc='Next function'})
-map('n', '[f', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'f', {search_method='prev'})<CR>", def, {desc='Previous function'})
-map('n', ']u', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'U')<CR>", def, {desc='Next url'})
-map('n', '[u', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'U', {search_method='prev'})<CR>", def, {desc='Previous url'})
 
--- mini.trailspace
-map('n', '<Leader>t', '<Cmd>lua MiniTrailspace.trim()<CR>', {desc='Trim trailspace'})
-map('n', '<Leader>T', '<Cmd>lua MiniTrailspace.trim_last_lines()<CR>', {desc='Trim trail lines'})
--- map('n', '<Leader>t', '<Cmd>%s/\\s\\+$//e<CR>', {desc='Trim trailspace'})
+-- mini.nvim: mini.ai
+map({'n','x','o'}, ']a', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'a')<CR>", {desc='Next argument'})
+map({'n','x','o'}, ']A', "<Cmd>lua MiniAi.move_cursor('right', 'i', 'a')<CR>", {desc='Next argument end'})
+map({'n','x','o'}, '[a', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'a', {search_method='prev'})<CR>", {desc='Previous argument'})
+map({'n','x','o'}, '[A', "<Cmd>lua MiniAi.move_cursor('right', 'i', 'a', {search_method='prev'})<CR>", {desc='Previous argument end'})
+map({'n','x','o'}, ']f', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'f')<CR>", {desc='Next function'})
+map({'n','x','o'}, ']F', "<Cmd>lua MiniAi.move_cursor('right', 'i', 'f')<CR>", {desc='Next function end'})
+map({'n','x','o'}, '[f', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'f', {search_method='prev'})<CR>", {desc='Previous function'})
+map({'n','x','o'}, '[F', "<Cmd>lua MiniAi.move_cursor('right', 'i', 'f', {search_method='prev'})<CR>", {desc='Previous function end'})

@@ -3,7 +3,6 @@ return {
     {
         'echasnovski/mini.nvim',
         version = false,
-        -- event = 'VeryLazy',
         config = function ()
 
             require('mini.align').setup()
@@ -11,27 +10,24 @@ return {
             require('mini.cursorword').setup()
             require('mini.move').setup()
             require('mini.pairs').setup()
-            require('mini.splitjoin').setup() --NOTE: modify keymaps to match with 'X'?
             require('mini.statusline').setup()
             require('mini.trailspace').setup()
 
             require('mini.ai').setup{
                 custom_textobjects = {
-                    D = {{ '()%d%d%d%d[-|/]%d%d[-|/]%d%d()', '()%d%d[-|/]%d%d[-|/]%d%d%d%d()', }}, --date
-                    U = {{ 'https://[%www.][%S]+', 'http://[%www.][%S]+' }}, --url
-                    x = { '%f[%d]%d+' }, --number
+                    x = { '%f[%d]%d+' }, -- number
 
-                    --entire buffer
+                    -- entire buffer
                     B = function()
                         local from = { line = 1, col = 1 }
                         local to = { line = vim.fn.line('$'), col = math.max(vim.fn.getline('$'):len(), 1) }
                         return { from = from, to = to }
                     end,
 
-                }
+                },
+                silent = true,
             }
 
-            --TODO: test
             require('mini.bracketed').setup{
                 buffer     = { suffix = 'b', options = {} },
                 comment    = { suffix = 'c', options = {} },
@@ -66,6 +62,12 @@ return {
 
             require('mini.jump').setup{
                 delay = { idle_stop = 10 }
+            }
+
+            require('mini.splitjoin').setup{
+              mappings = {
+                toggle = '<Leader>x',
+              },
             }
 
             require('mini.surround').setup{
