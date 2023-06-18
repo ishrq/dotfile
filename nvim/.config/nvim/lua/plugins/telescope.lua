@@ -75,7 +75,7 @@ return {
                 desc = 'Marks',
             },
             {
-                '<leader>q',
+                '<leader>Q',
                 function() require('telescope.builtin').diagnostics() end,
                 desc = 'Diagnostics',
             },
