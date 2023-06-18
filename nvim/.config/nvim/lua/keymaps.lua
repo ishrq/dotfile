@@ -13,8 +13,8 @@ map('', 'gV', '`[v`]', default, {desc='Select last modified'})
 map('i', '<C-z>', '<C-g>u<Esc>[S1z=`]a<C-g>u', {desc='Fix spelling'})
 map('n', '<Leader>=', ':set spell!<CR>', {desc='Toggle spell check'})
 map('n', '<Leader>8', ':execute "set cc=" . (&cc == "" ? "80" : "")<CR>', default, {desc='Toggle character column'})
-map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<cr>', { silent=true, desc='Split line' })
-map('x', 'g/', '<Esc>/\\%V', {silent=false, desc='Search inside selection'})
+map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<cr>', {desc='Split line'})
+map('x', 'g/', '<Esc>/\\%V', {desc='Search inside selection'})
 
 -- Search selected text
 map('x', '*', [[y/\V<C-R>=escape(@", '/\')<CR><CR>]])
@@ -34,8 +34,8 @@ map('x', 'gp', '"+P', {desc='Paste from system clipboard'})
 map('c', '<C-a>', '<Home>')
 map('c', '<C-n>', '<Down>')
 map('c', '<C-p>', '<Up>')
-map('c', '<M-h>', '<Left>', {silent=false})
-map('c', '<M-l>', '<Right>', {silent=false})
+map('c', '<M-h>', '<Left>')
+map('c', '<M-l>', '<Right>')
 
 -- Insert mode movement
 map('i', '<M-h>', '<Left>', allow_remap)
