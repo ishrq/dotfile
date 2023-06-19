@@ -8,7 +8,6 @@ vim.o.shiftwidth  = 2
 
 local spec_pair = require('mini.ai').gen_spec.pair
 vim.b.miniai_config = {
-    -- TODO: add textobject for footnote
     custom_textobjects = {
         d = {{ '()%d%d%d%d[-|/]%d%d[-|/]%d%d()', '()%d%d[-|/]%d%d[-|/]%d%d%d%d()', }}, -- date
         u = {{ 'https://[%www.][%S]+', 'http://[%www.][%S]+' }}, -- url
