@@ -28,7 +28,9 @@ return {
         silent = true,
       }
       require('mini.base16').setup{
-        -- framer
+        -- More themes available at:
+        -- https://github.com/wroyca/dotfiles/tree/main/home/dot_config/nvim/colors
+        -- base16-framer
         palette = {
           base00 = "#181818",
           base01 = "#151515",
