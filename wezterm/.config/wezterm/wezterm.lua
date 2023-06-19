@@ -15,35 +15,24 @@ local config = {
 
     -- VISUAL
 
-    inactive_pane_hsb = { hue = 1.0, saturation = 0.4, brightness = 0.9 },
+    inactive_pane_hsb = { hue = 1.0, saturation = 0.8, brightness = 0.5 },
     hide_tab_bar_if_only_one_tab = true,
     use_fancy_tab_bar = false,
     window_padding = { left = 2, right = 0, top = 0, bottom = 0, },
     window_decorations = "TITLE",
+
+    -- FONT
+    font = wezterm.font('CaskaydiaCove Nerd Font', { weight='DemiLight', stretch='Normal', style='Normal' }),
     font_size = 17,
-    font = wezterm.font_with_fallback { 'DroidSansMono Nerd Font', 'FiraCode Nerd Font', },
+    underline_position = -3,
+    line_height = 1.2,
 
     -- COLOR
 
     force_reverse_video_cursor = true,
-    colors = {
-        foreground = "#c5c9c5",
-        background = "#181616",
-
-        cursor_bg = "#c8c093",
-        cursor_fg = "#c8c093",
-        cursor_border = "#c8c093",
-
-        selection_fg = "#c8c093",
-        selection_bg = "#2d4f67",
-
-        scrollbar_thumb = "#16161d",
-        split = "#16161d",
-
-        ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
-        brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
-        indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
-    },
+    color_scheme = 'Framer (base16)',
+    -- color_scheme = 'Black Metal (base16)',
+    -- color_scheme = 'Black Metal (Bathory) (base16)',
 
     -- KEYMAP
 
