@@ -22,10 +22,24 @@ local config = {
     window_decorations = "TITLE",
 
     -- FONT
-    font = wezterm.font('CaskaydiaCove Nerd Font', { weight='DemiLight', stretch='Normal', style='Normal' }),
     font_size = 17,
     underline_position = -3,
     line_height = 1.2,
+    harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }, --disable ligatures
+    font = wezterm.font_with_fallback {
+      {
+        family  = 'CaskaydiaCove Nerd Font',
+        weight  = 'DemiLight',
+        stretch = 'Normal',
+        style   = 'Normal',
+      },
+      {
+        family = 'DroidSansMono NF',
+        weight = 'Regular',
+        stretch = 'Normal',
+        style = 'Normal',
+      },
+    },
 
     -- COLOR
 
