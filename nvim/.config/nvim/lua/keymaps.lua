@@ -72,6 +72,9 @@ map('n', '\\j', ":tab drop ~/ARCHIVE/Journal/journal.txt<CR>", {desc='Open journ
 map('n', '<Leader>e', vim.diagnostic.open_float)
 map('n', '<leader>q', vim.diagnostic.setloclist, default)
 
+-- mini.files
+map('n', '<Leader>ft', '<Cmd>lua MiniFiles.open()<CR>', {desc='Open file tree'})
+
 -- mini.trailspace
 -- map('n', '<Leader>t', '<Cmd>%s/\\s\\+$//e<CR>', {desc='Remove trailing whitespace'})
 -- map('n', '<Leader>T', '<Cmd>g/^\\s*$/d<CR>', {desc='Remove blank lines'})
