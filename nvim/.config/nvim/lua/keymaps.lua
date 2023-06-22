@@ -76,12 +76,10 @@ map('n', '<leader>q', vim.diagnostic.setloclist, default)
 map('n', '<Leader>ft', '<Cmd>lua MiniFiles.open()<CR>', {desc='Open file tree'})
 
 -- mini.trailspace
--- map('n', '<Leader>t', '<Cmd>%s/\\s\\+$//e<CR>', {desc='Remove trailing whitespace'})
--- map('n', '<Leader>T', '<Cmd>g/^\\s*$/d<CR>', {desc='Remove blank lines'})
 map('n', '<Leader>t', '<Cmd>lua MiniTrailspace.trim()<CR>', {desc='Trim trailing space'})
 map('n', '<Leader>T', '<Cmd>lua MiniTrailspace.trim_last_lines()<CR>', {desc='Trim trailing lines'})
 
--- mini.nvim: mini.ai
+-- mini.ai
 local nxo = {'n','x','o'}
 map(nxo, ']a', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'a')<CR>", {desc='Next argument'})
 map(nxo, ']A', "<Cmd>lua MiniAi.move_cursor('right', 'i', 'a')<CR>", {desc='Next argument end'})
