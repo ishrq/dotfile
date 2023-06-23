@@ -33,20 +33,18 @@ return {
       end, {expr=true})
 
       -- Actions
-      -- map('n', '<leader>hB', function() gs.blame_line{full=true} end, "Blame Line")
-      -- map('n', '<leader>hf', function() gs.diffthis('~') end, "Diff This ~")
-      map('n', '<leader>hb', gs.toggle_current_line_blame, "Toggle Blame")
-      map('n', '<leader>hd', gs.toggle_deleted, "Toggle Deleted")
-      map('n', '<leader>hf', gs.diffthis, "Diff This")
-      map('n', '<leader>hp', gs.preview_hunk, "Preview Hunk")
-      map('n', '<leader>hR', gs.reset_buffer, "Reset Buffer")
-      map('n', '<leader>hS', gs.stage_buffer, "Stage Buffer")
-      map('n', '<leader>hu', gs.undo_stage_hunk, "Undo Stage Hunk")
-      map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-      map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-
-      -- Text object
-      map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', "GitSigns Select Hunk")
+      -- map('n', '<leader>hB', function() gs.blame_line{full=true} end, 'Blame Line')
+      -- map('n', '<leader>hf', function() gs.diffthis('~') end, 'Diff This ~')
+      map('n', '<leader>hb', gs.toggle_current_line_blame, 'Toggle Blame')
+      map('n', '<leader>hd', gs.toggle_deleted, 'Toggle Deleted')
+      map('n', '<leader>hf', gs.diffthis, 'Diff This')
+      map('n', '<leader>hp', gs.preview_hunk, 'Preview Hunk')
+      map('n', '<leader>hR', gs.reset_buffer, 'Reset Buffer')
+      map('n', '<leader>hS', gs.stage_buffer, 'Stage Buffer')
+      map('n', '<leader>hu', gs.undo_stage_hunk, 'Undo Stage Hunk')
+      map({'n','v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>', 'Stage Hunk')
+      map({'n','v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>', 'Reset Hunk')
+      map({'o','x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
     end,
   },
 }
