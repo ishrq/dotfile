@@ -22,7 +22,7 @@ vim.b.miniai_config = {
   },
 }
 
-set local nxo = {'n', 'x', 'o'}
+local nxo = {'n', 'x', 'o'}
 vim.keymap.set(nxo, ']d', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'd', {n_lines='200'})<CR>", {desc='Next date'})
 vim.keymap.set(nxo, '[d', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'd', {search_method='prev', n_lines='200'})<CR>", {desc='Previous date'})
 vim.keymap.set(nxo, ']u', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'u', {n_lines='200'})<CR>", {desc='Next url'})
