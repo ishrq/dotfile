@@ -4,12 +4,32 @@ return {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp', event = 'VeryLazy' },
+      {
+        'hrsh7th/cmp-nvim-lsp',
+        event = 'VeryLazy'
+      },
       {
         'williamboman/mason-lspconfig.nvim',
-        dependencies = { 'williamboman/mason.nvim', config = true },
+        dependencies = {
+          'williamboman/mason.nvim',
+          config = true
+        },
         config = function ()
-          ensure_installed = { 'alex', 'black', 'clangd', 'codespell', 'css-lsp', 'cssmodules-language-server', 'eslint-lsp', 'eslint_d', 'html-lsp', 'json-lsp', 'lua-language-server', 'marksman', 'pyright', 'stylua', 'typescript-language-server', 'write-good', }
+          ensure_installed = {
+            'bash-language-server',
+            'black',
+            'clangd',
+            'codespell',
+            'cssls',
+            'deno',
+            'html-lsp',
+            'lua-language-server',
+            'marksman',
+            'pyright',
+            'stylua',
+            'tail-wind-css',
+            'write-good',
+          }
         end,
       },
 
@@ -29,27 +49,16 @@ return {
       -- Language server setup
       servers = {
         bashls = {},
+        clangd = {},
         cssls = {},
-        cssmodules_ls = {},
+        denols = {},
         html = {},
-        jsonls = {},
         marksman = {},
-        phpactor = {},
+        tailwindcss = {},
+        -- psalm = {},
         pyright = {},
-        -- clangd = {},
         -- gopls = {},
         -- sqlls = {},
-        -- tailwindcss = {},
-        -- tsserver = {},
-
-        eslint = {
-          on_attach = function(client, bufnr)
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              buffer = bufnr,
-              command = 'EslintFixAll',
-            })
-          end,
-        },
 
         lua_ls = {
           settings = {
@@ -92,9 +101,9 @@ return {
           vim.keymap.set('n', ',s', vim.lsp.buf.signature_help, opts, {desc="LSP Signature Help"})
           vim.keymap.set('n', ',td', vim.lsp.buf.type_definition, opts, {desc="LSP Type Definition"})
           vim.keymap.set({ 'n', 'v' }, ',ca', vim.lsp.buf.code_action, opts, {desc="LSP Code Action"})
-          -- vim.keymap.set('n', ',wa', vim.lsp.buf.add_workspace_folder, opts, {desc="LSP Add Workspace Folder"})
-          -- vim.keymap.set('n', ',wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts, {desc="LSP List Workspace Folder"})
-          -- vim.keymap.set('n', ',wr', vim.lsp.buf.remove_workspace_folder, opts, {desc="LSP Remove Workspace Folder"})
+          vim.keymap.set('n', ',wa', vim.lsp.buf.add_workspace_folder, opts, {desc="LSP Add Workspace Folder"})
+          vim.keymap.set('n', ',wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts, {desc="LSP List Workspace Folder"})
+          vim.keymap.set('n', ',wr', vim.lsp.buf.remove_workspace_folder, opts, {desc="LSP Remove Workspace Folder"})
         end,
       })
     end
