@@ -84,7 +84,7 @@ end
 vim.keymap.set('n', '<leader>d', toggle_diagnostics)
 
 -- mini.files
-map('n', '<Leader>ft', '<Cmd>lua MiniFiles.open()<CR>', {desc='Open file tree'})
+map('n', '<C-T>', '<Cmd>lua MiniFiles.open()<CR>', {desc='Open file tree'})
 
 -- mini.trailspace
 map('n', '<Leader>t', '<Cmd>lua MiniTrailspace.trim()<CR>', {desc='Trim trailing space'})
