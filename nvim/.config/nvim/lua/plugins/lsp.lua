@@ -44,22 +44,22 @@ return {
           vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
         end
 
-        map('n', '<Leader>rn', vim.lsp.buf.rename, "Rename")
-        map({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, "Code Action")
-        map('n', 'gd', vim.lsp.buf.definition, "Goto Definition")
-        map('n', 'gr', vim.lsp.buf.references, "Goto References")
-        map('n', 'gI', vim.lsp.buf.implementation, "Goto Implementation")
-        map('n', '<Leader>D', vim.lsp.buf.type_definition, "Type Definition")
+        map({ 'n', 'v' }, ',ca', vim.lsp.buf.code_action, "Code Action")
 
-        -- keywordpgp, more on `:help K`
+        map('n', ',rn', vim.lsp.buf.rename, "Rename")
+        map('n', ',gd', vim.lsp.buf.definition, "Goto Definition")
+        map('n', ',gD', vim.lsp.buf.declaration, "Goto Declaration")
+        map('n', ',gr', vim.lsp.buf.references, "Goto References")
+        map('n', ',gi', vim.lsp.buf.implementation, "Goto Implementation")
+        map('n', ',td', vim.lsp.buf.type_definition, "Type Definition")
+
         map('n', 'K', vim.lsp.buf.hover, "Hover Documentation")
         map('n', '<C-k>', vim.lsp.buf.signature_help, "Signature Documentation")
+        map('n', '<C-f>', function() vim.lsp.buf.format { async = true } end, "Format")
 
-        map('n', 'gD', vim.lsp.buf.declaration, "Goto Declaration")
-        map('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
-        map('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
-        map('n', '<Leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "Workspace List Folder")
-        map('n', ',f', function() vim.lsp.buf.format { async = true } end, "Format")
+        map('n', ',wa', vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
+        map('n', ',wr', vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
+        map('n', ',wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "Workspace List Folder")
 
         -- Create command `:Format` local to the LSP buffer
         vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
