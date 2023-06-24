@@ -72,6 +72,17 @@ map('n', '\\j', ":tab drop ~/ARCHIVE/Journal/journal.txt<CR>", {desc='Open journ
 map('n', '<Leader>e', vim.diagnostic.open_float)
 map('n', '<leader>q', vim.diagnostic.setloclist, default)
 
+local diagnostics_active = true
+local toggle_diagnostics = function()
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
+    vim.diagnostic.show()
+  else
+    vim.diagnostic.hide()
+  end
+end
+vim.keymap.set('n', '<leader>d', toggle_diagnostics)
+
 -- mini.files
 map('n', '<Leader>ft', '<Cmd>lua MiniFiles.open()<CR>', {desc='Open file tree'})
 
