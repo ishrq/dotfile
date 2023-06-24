@@ -123,17 +123,35 @@ return {
           { name = 'nvim_lsp', keyword_length = 2 },
         },
         window = {
-          -- completion = cmp.config.window.bordered(),
+          completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered()
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-d>"] = cmp.mapping.scroll_docs(4),
           ["<C-u>"] = cmp.mapping.scroll_docs(-4),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<C-Space>"] = cmp.mapping.complete(),
+
+          -- Super tab
+          ["<Esc>"] = cmp.mapping(function(fallback)
+            luasnip.unlink_current()
+            fallback()
+          end),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            elseif has_words_before() then cmp.complete()
+            else fallback() end
+          end, { "i", "s" }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then luasnip.jump(-1)
+            else fallback() end
+          end, {'i', 's'}),
         }),
       })
 
