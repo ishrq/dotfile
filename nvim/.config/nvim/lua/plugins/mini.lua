@@ -68,7 +68,20 @@ return {
         yank       = { suffix = '', options = {} },
       }
 
-      require('mini.files').setup()
+      require('mini.files').setup{
+        mappings = {
+          close       = 'q',
+          go_in       = '<S-l>',
+          go_in_plus  = '<CR>',
+          go_out      = '<S-h>',
+          go_out_plus = '',
+          reset       = '<BS>',
+          show_help   = 'g?',
+          synchronize = '=',
+          trim_left   = '<',
+          trim_right  = '>',
+        },
+      }
 
       -- Show/hide dot files in file tree
       local show_dotfiles = true
@@ -85,7 +98,7 @@ return {
         pattern = 'MiniFilesBufferCreate',
         callback = function(args)
           local buf_id = args.data.buf_id
-          vim.keymap.set('n', 'g.', toggle_dotfiles, { buffer = buf_id })
+          vim.keymap.set('n', '<Leader>a', toggle_dotfiles, { buffer = buf_id })
         end,
       })
 
@@ -99,7 +112,7 @@ return {
       vim.api.nvim_create_autocmd('User', {
         pattern = 'MiniFilesBufferCreate',
         callback = function(args)
-          vim.keymap.set('n', 'g~', files_set_cwd, { buffer = args.data.buf_id })
+          vim.keymap.set('n', 'cd', files_set_cwd, { buffer = args.data.buf_id })
         end,
       })
 
