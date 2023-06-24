@@ -32,22 +32,43 @@ return {
           }
         end,
       },
-
     },
-    opts = {
-      diagnostics = {
-        underline = true,
-        update_in_inset = false,
-        severity_sort = true,
-        virtual_text = { spacing = 4, source = 'if_many', prefix = '●' },
-      },
-      capabilities = {},
-      autoformat = true,
-      format_notify = false,
-      format = { formatting_options = nil, timeout_ms = nil, },
+    config = function ()
+      --  Run on LSP attach
+      local on_attach = function(_, bufnr)
+        local map = function(keys, func, desc)
+          if desc then
+            desc = "LSP: " .. desc
+          end
 
-      -- Language server setup
-      servers = {
+          vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
+        end
+
+        map('n', '<Leader>rn', vim.lsp.buf.rename, "Rename")
+        map({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, "Code Action")
+        map('n', 'gd', vim.lsp.buf.definition, "Goto Definition")
+        map('n', 'gr', vim.lsp.buf.references, "Goto References")
+        map('n', 'gI', vim.lsp.buf.implementation, "Goto Implementation")
+        map('n', '<Leader>D', vim.lsp.buf.type_definition, "Type Definition")
+
+        -- keywordpgp, more on `:help K`
+        map('n', 'K', vim.lsp.buf.hover, "Hover Documentation")
+        map('n', '<C-k>', vim.lsp.buf.signature_help, "Signature Documentation")
+
+        map('n', 'gD', vim.lsp.buf.declaration, "Goto Declaration")
+        map('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
+        map('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
+        map('n', '<Leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "Workspace List Folder")
+        map('n', ',f', function() vim.lsp.buf.format { async = true } end, "Format")
+
+        -- Create command `:Format` local to the LSP buffer
+        vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+          vim.lsp.buf.format()
+        end, { desc = "Format current buffer with LSP" })
+      end
+
+      -- Enable language servers
+      local lsp_servers = {
         bashls = {},
         clangd = {},
         cssls = {},
@@ -61,51 +82,36 @@ return {
         -- sqlls = {},
 
         lua_ls = {
-          settings = {
-            Lua = {
-              runtime = { version = 'LuaJIT', },
-              diagnostics = { globals = {'vim'}, },
-              workspace = { library = vim.api.nvim_get_runtime_file('', true), },
-              telemetry = { enable = false, },
-            },
+          Lua = {
+            runtime = { version = 'LuaJIT', },
+            diagnostics = { globals = {'vim'}, },
+            workspace = { library = vim.api.nvim_get_runtime_file('', true), },
+            telemetry = { enable = false, },
           },
         },
       }
-    },
-    -- setup = {},
-    config = function ()
-      local lspconfig = require('lspconfig')
 
-      local lsp_defaults = lspconfig.util.default_config
-      lsp_defaults.capabilities = vim.tbl_deep_extend( 'force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-      --Enable (broadcasting) snippet capability for completion
+      -- nvim-cmp additional completion capabilities
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-      -- Map keys after lsp attaches to current buffer
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-        callback = function(ev)
-          -- Enable completion triggered by <c-x><c-o>
-          vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+      -- Edit lsp diagnostics signs (in margin)
+      local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
 
-          local opts = { buffer = ev.buf }
-          vim.keymap.set('n', ',D', vim.lsp.buf.declaration, opts, {desc="LSP Declaration"})
-          vim.keymap.set('n', ',d', vim.lsp.buf.definition, opts, {desc="LSP Definition"})
-          vim.keymap.set('n', ',f', function() vim.lsp.buf.format { async = true } end, opts, {desc="LSP Format"})
-          vim.keymap.set('n', ',h', vim.lsp.buf.hover, opts, {desc="LSP Hover"})
-          vim.keymap.set('n', ',i', vim.lsp.buf.implementation, opts, {desc="LSP Implementation"})
-          vim.keymap.set('n', ',rf', vim.lsp.buf.references, opts, {desc="LSP References"})
-          vim.keymap.set('n', ',rn', vim.lsp.buf.rename, opts, {desc="LSP Rename"})
-          vim.keymap.set('n', ',s', vim.lsp.buf.signature_help, opts, {desc="LSP Signature Help"})
-          vim.keymap.set('n', ',td', vim.lsp.buf.type_definition, opts, {desc="LSP Type Definition"})
-          vim.keymap.set({ 'n', 'v' }, ',ca', vim.lsp.buf.code_action, opts, {desc="LSP Code Action"})
-          vim.keymap.set('n', ',wa', vim.lsp.buf.add_workspace_folder, opts, {desc="LSP Add Workspace Folder"})
-          vim.keymap.set('n', ',wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts, {desc="LSP List Workspace Folder"})
-          vim.keymap.set('n', ',wr', vim.lsp.buf.remove_workspace_folder, opts, {desc="LSP Remove Workspace Folder"})
-        end,
+      -- Edit inline diagnostic preferences
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = "",
+        },
+        severity_sort = true,
+        float = {
+          source = "always",
+        },
       })
     end
-  },
+  }
 }
