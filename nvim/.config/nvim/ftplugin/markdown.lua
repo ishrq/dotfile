@@ -12,21 +12,22 @@ vim.keymap.set('n', '<C-p>', '<Plug>MarkdownPreviewToggle', {desc='Markdown Prev
 -- MiniAi textobjects
 local spec_pair = require('mini.ai').gen_spec.pair
 vim.b.miniai_config = {
-  -- TODO: add textobject for footnotes & tasks
+  -- TODO: add textobject for footnotes, tasks, headings
   custom_textobjects = {
     ['*'] = spec_pair('*', '*', { type = 'greedy' }),
     ['_'] = spec_pair('_', '_', { type = 'greedy' }),
     ['~'] = spec_pair('~', '~', { type = 'greedy' }),
     d = {{ '()%d%d%d%d[-|/]%d%d[-|/]%d%d()', '()%d%d[-|/]%d%d[-|/]%d%d%d%d()', }}, -- date
-    u = {{ 'https://[%www.][%S]+', 'http://[%www.][%S]+' }}, -- url
+    -- HACK: url registers characters like '>', ']', ')', etc.
+    u = { 'http[s]?://[%S]+' }, -- url
   },
 }
 
 local nxo = {'n', 'x', 'o'}
-vim.keymap.set(nxo, ']d', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'd', {n_lines='200'})<CR>", {desc='Next date'})
-vim.keymap.set(nxo, '[d', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'd', {search_method='prev', n_lines='200'})<CR>", {desc='Previous date'})
-vim.keymap.set(nxo, ']u', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'u', {n_lines='200'})<CR>", {desc='Next url'})
-vim.keymap.set(nxo, '[u', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'u', {search_method='prev', n_lines='200'})<CR>", {desc='Previous url'})
+vim.keymap.set(nxo, ']d', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'd', {n_lines='200'})<CR>", {desc='Next Date'})
+vim.keymap.set(nxo, '[d', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'd', {search_method='prev', n_lines='200'})<CR>", {desc='Previous Date'})
+vim.keymap.set(nxo, ']u', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'u', {n_lines='200'})<CR>", {desc='Next URL'})
+vim.keymap.set(nxo, '[u', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'u', {search_method='prev', n_lines='200'})<CR>", {desc='Previous URL'})
 
 
 -- MiniBracketed
