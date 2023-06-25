@@ -118,16 +118,58 @@ autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
   group = numbertogglegroup,
 })
 
+-- Auto mark files
+-- Inspired by https://gist.github.com/romainl/3e0cb99343c72d04e9bc10f6d76ebbef
+-- NOTE: find way to use if/elseif statements to optimize code
+
+local AutoMarks = augroup('AutomaticMarks', {clear = false})
+
+autocmd({ 'BufLeave', 'ExitPre' }, {
+  group = AutoMarks,
+  pattern = {'*.css','*.scss'},
+  callback = function() vim.cmd('normal! mC') end
+})
+
+autocmd({ 'BufLeave', 'ExitPre' }, {
+  group = AutoMarks,
+  pattern = '*.html',
+  callback = function() vim.cmd('normal! mH') end
+})
+
+autocmd({ 'BufLeave', 'ExitPre' }, {
+  group = AutoMarks,
+  pattern = {'*.js','*.ts'},
+  callback = function() vim.cmd('normal! mJ') end
+})
+
+autocmd({ 'BufLeave', 'ExitPre' }, {
+  group = AutoMarks,
+  pattern = '*.md',
+  callback = function() vim.cmd('normal! mM') end
+})
+
+autocmd({ 'BufLeave', 'ExitPre' }, {
+  group = AutoMarks,
+  pattern = '*.fish',
+  callback = function() vim.cmd('normal! mF') end
+})
+
+autocmd({ 'BufLeave', 'ExitPre' }, {
+  group = AutoMarks,
+  pattern = '*.lua',
+  callback = function() vim.cmd('normal! mL') end
+})
+
 
 -- Highlights
 
 autocmd('BufReadPost', {
-  group = Date,
+  group = augroup('Date', {}),
   callback = function() vim.cmd.hi('Date guifg=#FC4769') end,
 })
 
 autocmd('BufReadPost', {
-  group = Url,
+  group = augroup('Url', {}),
   callback = function() vim.cmd.hi('Url gui=underline,italic') end,
 })
 
