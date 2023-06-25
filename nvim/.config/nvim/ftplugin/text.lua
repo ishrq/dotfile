@@ -8,8 +8,7 @@ local spec_pair = require('mini.ai').gen_spec.pair
 vim.b.miniai_config = {
     custom_textobjects = {
         d = {{ '()%d%d%d%d[-|/]%d%d[-|/]%d%d()', '()%d%d[-|/]%d%d[-|/]%d%d%d%d()', }}, -- date
-        -- HACK: url registers characters like '>', ']', ')', etc.
-        u = { 'http[s]?://[%S]+' }, -- url
+        u = { 'http[s]?://[^>%]%)\'"]+' }, -- url
     },
 }
 
