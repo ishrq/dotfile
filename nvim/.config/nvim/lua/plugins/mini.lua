@@ -25,6 +25,7 @@ return {
           end,
 
         },
+        n_lines = 500,
         silent = true,
       }
       require('mini.base16').setup{
