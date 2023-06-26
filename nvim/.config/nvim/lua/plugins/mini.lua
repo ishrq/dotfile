@@ -71,9 +71,9 @@ return {
       require('mini.files').setup{
         mappings = {
           close       = 'q',
-          go_in       = '<S-l>',
+          go_in       = '<M-l>',
           go_in_plus  = '<CR>',
-          go_out      = '<S-h>',
+          go_out      = '<M-h>',
           go_out_plus = '',
           reset       = '<BS>',
           show_help   = 'g?',
@@ -98,7 +98,7 @@ return {
         pattern = 'MiniFilesBufferCreate',
         callback = function(args)
           local buf_id = args.data.buf_id
-          vim.keymap.set('n', '<Leader>a', toggle_dotfiles, { buffer = buf_id })
+          vim.keymap.set('n', '<Leader>.', toggle_dotfiles, { buffer = buf_id })
         end,
       })
 
