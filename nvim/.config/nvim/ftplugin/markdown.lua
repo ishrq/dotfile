@@ -40,8 +40,3 @@ map(nxo, '[u', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'u', {search_method='pr
 --TODO: add mapping for todo & headings
 -- map(nxo, ']t', "<Cmd>lua MiniAi.move_cursor('left', 'i', 't')<CR>", {desc='Next Todo'})
 -- map(nxo, '[t', "<Cmd>lua MiniAi.move_cursor('left', 'i', 't', {search_method='prev'})<CR>", {desc='Previous Todo'})
-
--- MiniBracketed
-vim.b.minibracketed_config = {
-  treesitter = { suffix = '' },
-}
