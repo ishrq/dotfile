@@ -33,9 +33,9 @@ return {
       end, {expr=true})
 
       -- Actions
-      -- map('n', '<leader>hB', function() gs.blame_line{full=true} end, 'Blame Line')
       -- map('n', '<leader>hf', function() gs.diffthis('~') end, 'Diff This ~')
       map('n', '<leader>hb', gs.toggle_current_line_blame, 'Toggle Blame')
+      map('n', '<leader>hB', function() gs.blame_line{full=true} end, 'Blame Line')
       map('n', '<leader>hd', gs.toggle_deleted, 'Toggle Deleted')
       map('n', '<leader>hf', gs.diffthis, 'Diff This')
       map('n', '<leader>hp', gs.preview_hunk, 'Preview Hunk')
