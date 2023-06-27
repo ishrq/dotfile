@@ -7,6 +7,7 @@ return {
     cmd = { 'MarkdownPreview', 'MarkdownPreviewStop', 'MarkdownPreviewToggle' },
     lazy = true,
     build = function() vim.fn['mkdp#util#install']() end,
+    keys = { { '<C-p>', '<Plug>MarkdownPreviewToggle', desc='Markdown Preview' }, },
     config = function ()
       vim.g.mkdp_auto_close = 0
       vim.g.mkdp_command_for_global = 1
