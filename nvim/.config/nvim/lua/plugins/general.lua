@@ -2,15 +2,27 @@ return{
   -- https://github.com/tzachar/highlight-undo.nvim
   {
     'tzachar/highlight-undo.nvim',
-    event = 'VeryLazy',
+    lazy = true,
+    keys = {
+      { 'u', 'undo', {}},
+      { '<C-r>', 'redo', {}},
+    },
     config = true
   },
-  -- https://github.com/norcalli/nvim-colorizer.lua
+  -- https://github.com/NvChad/nvim-colorizer.lua
   {
     'NvChad/nvim-colorizer.lua',
     cond = vim.fn.hostname() == "pop-os",
-    ft = {'html','css','js','lua'},
-    cmd = 'Colorizer',
-    config = true
+    ft = {'css'},
+    cmd = 'ColorizerToggle',
+    config = function ()
+      require('colorizer').setup {
+        user_default_options = {
+          css = true,
+          css_fn = true,
+          tailwind = true,
+        }
+    }
+    end
   },
 }

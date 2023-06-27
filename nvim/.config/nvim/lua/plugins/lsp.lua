@@ -95,10 +95,11 @@ return {
   },
   {
     -- https://github.com/hrsh7th/nvim-cmp
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    'hrsh7th/nvim-cmp',
+    lazy = true,
+    event = 'InsertEnter',
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp', event = 'VeryLazy' },
+      { 'hrsh7th/cmp-nvim-lsp', event = 'InsertEnter' },
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'saadparwaiz1/cmp_luasnip',
@@ -178,6 +179,7 @@ return {
   {
     -- https://github.com/L3MON4D3/LuaSnip
     'L3MON4D3/LuaSnip',
+    lazy = true,
     event = 'InsertEnter',
     dependencies = { 'rafamadriz/friendly-snippets' },
     opts = {
@@ -204,45 +206,46 @@ return {
           require('luasnip.loaders.from_snipmate').lazy_load()
           require('luasnip.loaders.from_lua').lazy_load()
         end
-      },
-      {
-        -- https://github.com/jose-elias-alvarez/null-ls.nvim
-        'jose-elias-alvarez/null-ls.nvim',
-        event = { 'BufReadPre', 'BufNewFile' },
-        dependencies = 'nvim-lua/plenary.nvim',
-        opts = function()
-          local null_ls = require('null-ls')
-          local code_actions = null_ls.builtins.code_actions
-          local diagnostics = null_ls.builtins.diagnostics
-          local formatting = null_ls.builtins.formatting
-          local hover = null_ls.builtins.hover
-          local completion = null_ls.builtins.completion
+  },
+  {
+    -- https://github.com/jose-elias-alvarez/null-ls.nvim
+    'jose-elias-alvarez/null-ls.nvim',
+    lazy = true,
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = 'nvim-lua/plenary.nvim',
+    opts = function()
+      local null_ls = require('null-ls')
+      local code_actions = null_ls.builtins.code_actions
+      local diagnostics = null_ls.builtins.diagnostics
+      local formatting = null_ls.builtins.formatting
+      local hover = null_ls.builtins.hover
+      local completion = null_ls.builtins.completion
 
-          return {
-            sources = {
-              completion.luasnip,
-              completion.spell,
-              completion.tags,
-              diagnostics.todo_comments,
-              diagnostics.trail_space,
-              hover.dictionary,
+      return {
+        sources = {
+          completion.luasnip,
+          completion.spell,
+          completion.tags,
+          diagnostics.todo_comments,
+          diagnostics.trail_space,
+          hover.dictionary,
 
-              code_actions.gitsigns,
-              diagnostics.write_good,
-              formatting.black,
-              formatting.jq,
-              formatting.stylua,
+          code_actions.gitsigns,
+          diagnostics.write_good,
+          formatting.black,
+          formatting.jq,
+          formatting.stylua,
 
-              diagnostics.codespell,
-              formatting.codespell,
+          diagnostics.codespell,
+          formatting.codespell,
 
-              diagnostics.deno_lint,
-              formatting.deno_fmt,
+          diagnostics.deno_lint,
+          formatting.deno_fmt,
 
-              diagnostics.fish,
-              formatting.fish_indent,
-            }
-          }
-        end,
+          diagnostics.fish,
+          formatting.fish_indent,
+        }
       }
-    }
+    end,
+  }
+}

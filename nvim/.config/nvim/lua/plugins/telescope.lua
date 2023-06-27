@@ -3,8 +3,8 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     cond = vim.fn.hostname() == "pop-os",
-    event = 'VeryLazy',
     cmd = 'Telescope',
+    lazy = true,
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
