@@ -13,6 +13,10 @@ return {
       require('mini.statusline').setup()
       require('mini.trailspace').setup()
 
+      if vim.fn.hostname() == "pop-os" then
+        require('mini.fuzzy').setup()
+      end
+
       require('mini.ai').setup{
         custom_textobjects = {
           x = { '%f[%d]%d+' }, -- number

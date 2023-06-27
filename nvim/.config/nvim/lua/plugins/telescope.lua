@@ -8,11 +8,6 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make',
-        event = 'VeryLazy'
-      },
-      {
         'debugloop/telescope-undo.nvim',
         event = 'VeryLazy'
       },
@@ -28,7 +23,6 @@ return {
       },
     },
     config = function()
-      require('telescope').load_extension('fzf')
       require('telescope').load_extension('undo')
       vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>', {desc='Telescope Undo'})
     end,
