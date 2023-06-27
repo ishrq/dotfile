@@ -2,6 +2,7 @@ return {
   -- https://github.com/iamcco/markdown-preview.nvim
   {
     'iamcco/markdown-preview.nvim',
+    cond = vim.fn.hostname() == "pop-os",
     ft = 'markdown',
     cmd = { 'MarkdownPreview', 'MarkdownPreviewStop', 'MarkdownPreviewToggle' },
     lazy = true,

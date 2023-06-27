@@ -8,6 +8,7 @@ return{
   -- https://github.com/norcalli/nvim-colorizer.lua
   {
     'NvChad/nvim-colorizer.lua',
+    cond = vim.fn.hostname() == "pop-os",
     ft = {'html','css','js','lua'},
     cmd = 'Colorizer',
     config = true

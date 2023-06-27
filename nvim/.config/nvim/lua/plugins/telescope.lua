@@ -2,16 +2,20 @@ return {
   -- https://github.com/nvim-telescope/telescope.nvim
   {
     'nvim-telescope/telescope.nvim',
+    cond = vim.fn.hostname() == "pop-os",
     event = 'VeryLazy',
     cmd = 'Telescope',
     dependencies = {
+      'nvim-lua/plenary.nvim',
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
         event = 'VeryLazy'
       },
-      'debugloop/telescope-undo.nvim',
-      'nvim-lua/plenary.nvim'
+      {
+        'debugloop/telescope-undo.nvim',
+        event = 'VeryLazy'
+      },
     },
     opts = {
       defaults = {
