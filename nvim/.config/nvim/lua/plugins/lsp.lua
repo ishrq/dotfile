@@ -25,8 +25,8 @@ return {
 
           map(',ca', vim.lsp.buf.code_action, "Code Action")
           map(',rn', vim.lsp.buf.rename, "Rename")
-          map(',gd', vim.lsp.buf.definition, "Goto Definition")
-          map(',gD', vim.lsp.buf.declaration, "Goto Declaration")
+          map('gd', vim.lsp.buf.definition, "Goto Definition")
+          map('gD', vim.lsp.buf.declaration, "Goto Declaration")
           map(',gr', vim.lsp.buf.references, "Goto References")
           map(',gi', vim.lsp.buf.implementation, "Goto Implementation")
           map(',td', vim.lsp.buf.type_definition, "Type Definition")
