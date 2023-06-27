@@ -7,10 +7,6 @@ return {
     cmd = 'Telescope',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      {
-        'debugloop/telescope-undo.nvim',
-        event = 'VeryLazy'
-      },
     },
     opts = {
       defaults = {
@@ -22,10 +18,6 @@ return {
         winblend = 0,
       },
     },
-    config = function()
-      require('telescope').load_extension('undo')
-      vim.keymap.set('n', '<leader>u', '<cmd>Telescope undo<cr>', {desc='Telescope Undo'})
-    end,
     keys = {
       { '<leader>fd', function() require('telescope.builtin').find_files() end, desc='Find file' },
       { '<leader>rg', function() require('telescope.builtin').live_grep() end, desc='Grep' },
