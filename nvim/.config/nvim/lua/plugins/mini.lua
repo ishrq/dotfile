@@ -36,59 +36,70 @@ return {
       -- More themes available at:
       -- https://github.com/wroyca/dotfiles/tree/main/home/dot_config/nvim/colors
       -- base16-framer
-      local b0
-      local b1
-      if vim.fn.hostname() == "pop-os" then
-        b0 = "#181818"
-        b1 = "#151515"
-      else
+      local b0 = "#181818"
+      if vim.fn.hostname() ~= "pop-os" then
         b0 = "#000000"
-        b1 = "#111111"
       end
-        require('mini.base16').setup{
-          palette = {
-            base00 = b0,
-            base01 = b1,
-            base02 = "#464646",
-            base03 = "#747474",
-            base04 = "#B9B9B9",
-            base05 = "#D0D0D0",
-            base06 = "#E8E8E8",
-            base07 = "#EEEEEE",
-            base08 = "#FD886B",
-            base09 = "#FC4769",
-            base0A = "#FECB6E",
-            base0B = "#32EEDC",
-            base0C = "#ACDDFD",
-            base0D = "#20BCFC",
-            base0E = "#BA8CFC",
-            base0F = "#B15F4A",
-          }
+      require('mini.base16').setup {
+        palette = {
+          base00 = b0,
+          base01 = "#151515",
+          base02 = "#464646",
+          base03 = "#747474",
+          base04 = "#B9B9B9",
+          base05 = "#D0D0D0",
+          base06 = "#E8E8E8",
+          base07 = "#EEEEEE",
+          base08 = "#FD886B",
+          base09 = "#FC4769",
+          base0A = "#FECB6E",
+          base0B = "#32EEDC",
+          base0C = "#ACDDFD",
+          base0D = "#20BCFC",
+          base0E = "#BA8CFC",
+          base0F = "#B15F4A",
         }
-
-      require('mini.bracketed').setup{
-        buffer     = { suffix = 'b', options = {} },
-        comment    = { suffix = 'c', options = {} },
-        conflict   = { suffix = 'x', options = {} },
-        diagnostic = { suffix = 'e', options = {} },
-        file       = { suffix = '', options = {} },
-        indent     = { suffix = 'i', options = {} },
-        jump       = { suffix = 'j', options = {} },
-        location   = { suffix = 'l', options = {} },
-        oldfile    = { suffix = '', options = {} },
-        quickfix   = { suffix = 'q', options = {} },
-        treesitter = { suffix = '', options = {} },
-        undo       = { suffix = '', options = {} },
-        window     = { suffix = 'w', options = {} },
-        yank       = { suffix = '', options = {} },
       }
 
-      local go_in
-      local go_out
-      if vim.fn.hostname() == "pop-os" then
-        go_in = "<M-l>"
-        go_out = "<M-h>"
-      else
+      require('mini.basics').setup({
+        options = {
+          basic = true,
+          extra_ui = false,
+          win_borders = 'default',
+        },
+        mappings = {
+          basic = true,
+          option_toggle_prefix = '',
+          windows = false,
+          move_with_alt = true,
+        },
+        autocommands = {
+          basic = true,
+          relnum_in_visual_mode = false,
+        },
+        silent = false,
+      })
+
+      require('mini.bracketed').setup{
+        buffer     = { suffix = 'b' },
+        comment    = { suffix = 'c' },
+        conflict   = { suffix = 'x' },
+        diagnostic = { suffix = 'e' },
+        file       = { suffix = '' },
+        indent     = { suffix = 'i' },
+        jump       = { suffix = 'j' },
+        location   = { suffix = 'l' },
+        oldfile    = { suffix = '' },
+        quickfix   = { suffix = 'q' },
+        treesitter = { suffix = '' },
+        undo       = { suffix = '' },
+        window     = { suffix = 'w' },
+        yank       = { suffix = '' },
+      }
+
+      local go_in = "<M-l>"
+      local go_out = "<M-h>"
+      if vim.fn.hostname() ~= "pop-os" then
         go_in = "<Right>"
         go_out = "<Left>"
       end
@@ -174,9 +185,7 @@ return {
       }
 
       require('mini.splitjoin').setup{
-        mappings = {
-          toggle = '<Leader>x',
-        },
+        mappings = { toggle = '<Leader>x' },
       }
 
       require('mini.surround').setup{

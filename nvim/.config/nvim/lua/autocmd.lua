@@ -1,6 +1,8 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Some commands are set by mini.basic
+
 augroup('bufcheck', {clear=true})
 
 -- Reload config file on change
@@ -8,15 +10,6 @@ autocmd('BufWritePost', {
   group   = 'bufcheck',
   pattern = vim.env.MYVIMRC,
   command = 'silent source %'
-})
-
--- Highlight yank
-autocmd('TextYankPost', {
-  group    = 'bufcheck',
-  pattern  = '*',
-  callback = function()
-    vim.highlight.on_yank{timeout=300}
-  end
 })
 
 -- Resume previous position
@@ -40,13 +33,6 @@ autocmd('BufWritePre', {
 autocmd('BufEnter', {
   pattern = '*',
   command = 'set fo-=c fo-=r fo-=o'
-})
-
--- Start git messages in insert mode
-autocmd('FileType', {
-  group   = 'bufcheck',
-  pattern = { 'gitcommit', 'gitrebase', },
-  command = 'startinsert | 1'
 })
 
 -- No backup, swapfile, undofile for gopass
@@ -118,58 +104,16 @@ autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
   group = numbertogglegroup,
 })
 
--- Auto mark files
--- Inspired by https://gist.github.com/romainl/3e0cb99343c72d04e9bc10f6d76ebbef
--- NOTE: find way to use if/elseif statements to optimize code
-
-local AutoMarks = augroup('AutomaticMarks', {clear = false})
-
-autocmd({ 'BufLeave', 'ExitPre' }, {
-  group = AutoMarks,
-  pattern = {'*.css','*.scss'},
-  callback = function() vim.cmd('normal! mC') end
-})
-
-autocmd({ 'BufLeave', 'ExitPre' }, {
-  group = AutoMarks,
-  pattern = '*.html',
-  callback = function() vim.cmd('normal! mH') end
-})
-
-autocmd({ 'BufLeave', 'ExitPre' }, {
-  group = AutoMarks,
-  pattern = {'*.js','*.ts'},
-  callback = function() vim.cmd('normal! mJ') end
-})
-
-autocmd({ 'BufLeave', 'ExitPre' }, {
-  group = AutoMarks,
-  pattern = '*.md',
-  callback = function() vim.cmd('normal! mM') end
-})
-
-autocmd({ 'BufLeave', 'ExitPre' }, {
-  group = AutoMarks,
-  pattern = '*.fish',
-  callback = function() vim.cmd('normal! mF') end
-})
-
-autocmd({ 'BufLeave', 'ExitPre' }, {
-  group = AutoMarks,
-  pattern = '*.lua',
-  callback = function() vim.cmd('normal! mL') end
-})
-
 
 -- Highlights
 
 autocmd('BufReadPost', {
-  group = augroup('Date', {}),
+  group = Date,
   callback = function() vim.cmd.hi('Date guifg=#FC4769') end,
 })
 
 autocmd('BufReadPost', {
-  group = augroup('Url', {}),
+  group = Url,
   callback = function() vim.cmd.hi('Url gui=underline,italic') end,
 })
 
