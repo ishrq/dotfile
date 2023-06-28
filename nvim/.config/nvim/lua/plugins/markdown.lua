@@ -2,10 +2,10 @@ return {
   -- https://github.com/iamcco/markdown-preview.nvim
   {
     'iamcco/markdown-preview.nvim',
+    lazy = true,
+    cmd = { 'MarkdownPreview', 'MarkdownPreviewStop', 'MarkdownPreviewToggle' },
     cond = vim.fn.hostname() == "pop-os",
     ft = 'markdown',
-    cmd = { 'MarkdownPreview', 'MarkdownPreviewStop', 'MarkdownPreviewToggle' },
-    lazy = true,
     build = function() vim.fn['mkdp#util#install']() end,
     keys = { { '<C-p>', '<Plug>MarkdownPreviewToggle', desc='Markdown Preview' }, },
     config = function ()
