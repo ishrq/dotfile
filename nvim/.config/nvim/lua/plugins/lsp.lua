@@ -1,105 +1,115 @@
 return {
+  -- https://github.com/neovim/nvim-lspconfig
   {
-    -- https://github.com/neovim/nvim-lspconfig
     'neovim/nvim-lspconfig',
+    cond = vim.fn.hostname() == 'pop-os',
     dependencies = {
       {
         'williamboman/mason.nvim',
-        build = function()
-          pcall(vim.cmd, 'MasonUpdate')
-        end,
+        cmd = 'Mason',
       },
-      { 'williamboman/mason-lspconfig.nvim' },
+       {
+         'williamboman/mason-lspconfig.nvim',
+         cond = vim.fn.hostname() == 'pop-os',
+       },
     },
     config = function()
-      vim.api.nvim_create_autocmd('LspAttach', {
-        desc = 'LSP actions',
-        callback = function(event)
-          local map = function(keys, func, desc)
-            if desc then
-              desc = "LSP: " .. desc
+      if vim.fn.hostname() == 'pop-os' then
+        vim.api.nvim_create_autocmd('LspAttach', {
+          desc = 'LSP actions',
+          callback = function(event)
+            local map = function(keys, func, desc)
+              if desc then
+                desc = "LSP: " .. desc
+              end
+
+              vim.keymap.set('n', keys, func, { buffer = bufnr, remap = false, desc = desc })
             end
 
-            vim.keymap.set('n', keys, func, { buffer = bufnr, remap = false, desc = desc })
+            map(',ca', vim.lsp.buf.code_action, "Code Action")
+            map(',rn', vim.lsp.buf.rename, "Rename")
+            map('gd', vim.lsp.buf.definition, "Goto Definition")
+            map('gD', vim.lsp.buf.declaration, "Goto Declaration")
+            map(',gr', vim.lsp.buf.references, "Goto References")
+            map(',gi', vim.lsp.buf.implementation, "Goto Implementation")
+            map(',td', vim.lsp.buf.type_definition, "Type Definition")
+            map('K', vim.lsp.buf.hover, "Hover Documentation")
+            map('<C-k>', vim.lsp.buf.signature_help, "Signature Documentation")
+            map('<C-f>', function() vim.lsp.buf.format { async = true } end, "Format")
+            map(',wa', vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
+            map(',wr', vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
+            map(',wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "Workspace List Folder")
           end
-
-          map(',ca', vim.lsp.buf.code_action, "Code Action")
-          map(',rn', vim.lsp.buf.rename, "Rename")
-          map('gd', vim.lsp.buf.definition, "Goto Definition")
-          map('gD', vim.lsp.buf.declaration, "Goto Declaration")
-          map(',gr', vim.lsp.buf.references, "Goto References")
-          map(',gi', vim.lsp.buf.implementation, "Goto Implementation")
-          map(',td', vim.lsp.buf.type_definition, "Type Definition")
-          map('K', vim.lsp.buf.hover, "Hover Documentation")
-          map('<C-k>', vim.lsp.buf.signature_help, "Signature Documentation")
-          map('<C-f>', function() vim.lsp.buf.format { async = true } end, "Format")
-          map(',wa', vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
-          map(',wr', vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
-          map(',wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "Workspace List Folder")
-        end
-      })
-
-      require('mason').setup()
-      require('mason-lspconfig').setup({
-        ensure_installed = {
-          'bashls',
-          'clangd',
-          'cssls',
-          'denols',
-          'html',
-          'lua_ls',
-          'marksman',
-          'pyright',
-          'tailwindcss',
-        }
-      })
-
-      local lspconfig = require('lspconfig')
-      local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-      require('mason-lspconfig').setup_handlers({
-        function(server_name)
-          lspconfig[server_name].setup({
-            capabilities = lsp_capabilities,
-          })
-        end,
-      })
-
-      require 'lspconfig'.lua_ls.setup {
-        Lua = {
-          runtime = { version = 'LuaJIT', },
-          diagnostics = { globals = { 'vim' }, },
-          workspace = { library = vim.api.nvim_get_runtime_file('', true), },
-          telemetry = { enable = false, },
-        },
-      }
-
-      -- Edit lsp diagnostics signs (in margin)
-      local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+        })
       end
 
-      -- Edit inline diagnostic preferences
-      vim.diagnostic.config({
-        virtual_text = {
-          prefix = "",
-        },
-        severity_sort = true,
-        float = {
-          source = "always",
-        },
-      })
-    end,
+      require('mason').setup()
+
+      if vim.fn.hostname() == 'pop-os' then
+        require('mason-lspconfig').setup({
+          ensure_installed = {
+            'bashls',
+            'clangd',
+            'cssls',
+            'denols',
+            'html',
+            'lua_ls',
+            'marksman',
+            'pyright',
+            'tailwindcss',
+          }
+        })
+
+        local lspconfig = require('lspconfig')
+        local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+        require('mason-lspconfig').setup_handlers({
+          function(server_name)
+            lspconfig[server_name].setup({
+              capabilities = lsp_capabilities,
+            })
+          end,
+        })
+
+        require 'lspconfig'.lua_ls.setup {
+          Lua = {
+            runtime = { version = 'LuaJIT', },
+            diagnostics = { globals = { 'vim' }, },
+            workspace = { library = vim.api.nvim_get_runtime_file('', true), },
+            telemetry = { enable = false, },
+          },
+        }
+
+        -- Edit lsp diagnostics signs (in margin)
+        local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
+        for type, icon in pairs(signs) do
+          local hl = "DiagnosticSign" .. type
+          vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+        end
+
+        -- Edit inline diagnostic preferences
+        vim.diagnostic.config({
+          virtual_text = {
+            prefix = "",
+          },
+          severity_sort = true,
+          float = {
+            source = "always",
+          },
+        })
+      end
+    end
   },
+  -- https://github.com/hrsh7th/nvim-cmp
   {
-    -- https://github.com/hrsh7th/nvim-cmp
-    'hrsh7th/nvim-cmp',
+    "hrsh7th/nvim-cmp",
     lazy = true,
-    event = 'InsertEnter',
+    event = "InsertEnter",
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp', event = 'InsertEnter' },
+      {
+        'hrsh7th/cmp-nvim-lsp',
+        cond = vim.fn.hostname() == 'pop-os'
+      },
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'saadparwaiz1/cmp_luasnip',
@@ -176,43 +186,32 @@ return {
       })
     end
   },
+  -- https://github.com/L3MON4D3/LuaSnip
   {
-    -- https://github.com/L3MON4D3/LuaSnip
     'L3MON4D3/LuaSnip',
     lazy = true,
     event = 'InsertEnter',
-    dependencies = { 'rafamadriz/friendly-snippets' },
     opts = {
       history = true,
       delete_check_events = 'TextChanged',
     },
     keys = {
-      { '<c-n>',   '<Plug>luasnip-next-choice',                                                                   mode = {
-        'i', 's' } },
-        { '<c-p>',   '<Plug>luasnip-prev-choice',                                                                   mode = {
-          'i', 's' } },
-          { '<tab>',   function() return require('luasnip').jumpable(1) and '<Plug>luasnip-jump-next' or '<tab>' end,
-          expr = true,
-          silent = true,
-          mode =
-          'i', },
-          { '<tab>',   function() require('luasnip').jump(1) end,                                                     mode =
-          's' },
-          { '<s-tab>', function() require('luasnip').jump(-1) end,                                                    mode = {
-          'i', 's' } },
-        },
-        config = function()
-          require('luasnip.loaders.from_vscode').lazy_load({ exclude = { 'all', 'fish', 'html', 'markdown' } })
-          require('luasnip.loaders.from_snipmate').lazy_load()
-          require('luasnip.loaders.from_lua').lazy_load()
-        end
+      { "<c-n>", "<Plug>luasnip-next-choice", mode = { "i", "s"} },
+      { "<c-p>", "<Plug>luasnip-prev-choice", mode = { "i", "s" } },
+      { "<tab>", function() return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>" end, expr = true, silent = true, mode = "i", },
+      { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+    },
+    config = function()
+      require('luasnip.loaders.from_snipmate').lazy_load()
+      require('luasnip.loaders.from_lua').lazy_load()
+    end
   },
+  -- https://github.com/jose-elias-alvarez/null-ls.nvim
   {
-    -- https://github.com/jose-elias-alvarez/null-ls.nvim
     'jose-elias-alvarez/null-ls.nvim',
     lazy = true,
     event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = 'nvim-lua/plenary.nvim',
     opts = function()
       local null_ls = require('null-ls')
       local code_actions = null_ls.builtins.code_actions
@@ -225,27 +224,17 @@ return {
         sources = {
           completion.luasnip,
           completion.spell,
-          completion.tags,
           diagnostics.todo_comments,
           diagnostics.trail_space,
           hover.dictionary,
 
           code_actions.gitsigns,
           diagnostics.write_good,
-          formatting.black,
-          formatting.jq,
-          formatting.stylua,
 
           diagnostics.codespell,
           formatting.codespell,
-
-          diagnostics.deno_lint,
-          formatting.deno_fmt,
-
-          diagnostics.fish,
-          formatting.fish_indent,
         }
       }
     end,
-  }
+  },
 }

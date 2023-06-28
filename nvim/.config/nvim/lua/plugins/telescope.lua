@@ -5,9 +5,6 @@ return {
     cond = vim.fn.hostname() == "pop-os",
     cmd = 'Telescope',
     lazy = true,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
     opts = {
       defaults = {
         layout_strategy = 'flex',
