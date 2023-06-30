@@ -1,7 +1,4 @@
 -- Author: IA
--- Machine: PC
-
-
 
 require('options')
 require('keymaps')
