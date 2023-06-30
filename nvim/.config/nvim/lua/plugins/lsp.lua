@@ -129,9 +129,10 @@ return {
         snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
         sources = {
           { name = 'path' },
-          { name = 'luasnip',  keyword_length = 1 },
-          { name = 'buffer',   keyword_length = 2 },
-          { name = 'nvim_lsp', keyword_length = 2 },
+          { name = 'nvim_lsp', keyword_length = 1 },
+          { name = 'luasnip', keyword_length = 1 },
+          { name = 'buffer', keyword_length = 2 },
+          { name = 'dictionary', keyword_length = 4 },
         },
         window = {
           completion = cmp.config.window.bordered(),
