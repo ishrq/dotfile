@@ -1,3 +1,8 @@
+-- Indent 2 spaces
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+
 -- json pretty print
 vim.keymap.set('n', '<C-p>', ':%!jq .<CR>')
 
