@@ -48,14 +48,16 @@ return {
       if vim.fn.hostname() == 'pop-os' then
         require('mason-lspconfig').setup({
           ensure_installed = {
+            'astro',
             'bashls',
             'clangd',
             'cssls',
-            'denols',
+            -- 'denols',
             'html',
             'lua_ls',
             'marksman',
             'pyright',
+            'rome',
             'tailwindcss',
           }
         })
@@ -231,7 +233,8 @@ return {
 
           code_actions.gitsigns,
           diagnostics.write_good,
-
+          formatting.rome,
+          diagnostics.stylint,
           diagnostics.codespell,
           formatting.codespell,
         }
