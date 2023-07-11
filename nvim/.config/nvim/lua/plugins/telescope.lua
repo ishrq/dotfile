@@ -28,7 +28,6 @@ return {
       { '<leader>y', function() require('telescope.builtin').registers() end, desc='Registers' },
       { '<leader>1', function() require('telescope.builtin').oldfiles() end, desc='Recent files' },
       { '<leader>2', function() require('telescope.builtin').resume() end, desc='Resume Telescope' },
-      { 'z=', function() require('telescope.builtin').spell_suggest() end, desc='Spell Suggestions ' },
     },
   },
 }
