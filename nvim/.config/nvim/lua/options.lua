@@ -50,6 +50,7 @@ vim.o.grepprg        = 'rg' --default grep
 vim.o.lazyredraw     = true
 vim.o.ls             = 2 --statusbar height
 vim.o.spell          = true
+vim.o.spellsuggest   = 'best,5'
 vim.o.showmatch      = true
 vim.o.timeoutlen     = 1000  --key timeout
 vim.o.updatetime     = 50  --decrease update time
