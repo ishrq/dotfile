@@ -12,7 +12,7 @@ set scroll-full-overlap 0.01
 set scroll-step 100
 set show-v-scrollbar true
 set adjust-open width
-set recolor true
+# set recolor true
 set window-title-basename "true"
 
 # Color
@@ -46,8 +46,8 @@ set statusbar-fg                "#dadada" # Foreground
 set highlight-color             "#ffb86c" # Orange
 set highlight-active-color      "#ff79c6" # Pink
 
-set default-bg                  "#181f21" # Background
-set default-fg                  "#dadada" # Foreground
+# set default-fg                  "#181f21" # Foreground
+# set default-bg                  "#dadada" # Background
 
 set render-loading              true
 set render-loading-fg           "#181f21" # Background
@@ -55,5 +55,5 @@ set render-loading-bg           "#dadada" # Foreground
 
 # Recolor mode settings
 
-set recolor-lightcolor          "#181f21" # Background
-set recolor-darkcolor           "#dadada" # Foreground
+# set recolor-lightcolor          "#181f21" # Background
+# set recolor-darkcolor           "#dadada" # Foreground
