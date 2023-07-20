@@ -49,10 +49,7 @@ return {
         require('mason-lspconfig').setup({
           ensure_installed = {
             'astro',
-            'bashls',
-            'clangd',
             'cssls',
-            -- 'denols',
             'html',
             'lua_ls',
             'marksman',
