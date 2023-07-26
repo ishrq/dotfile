@@ -4,9 +4,9 @@
 
 function capture
   if test -d "$HOME/ARCHIVE"
-    set file ~/ARCHIVE/Journal/backlog.txt
+    set file ~/ARCHIVE/Journals/Backlog/capture.txt
   else
-    set file ~/storage/shared/Documents/COMPUTER/ARCHIVE/Journal/backlog.txt
+    set file ~/storage/shared/Documents/COMPUTER/ARCHIVE/Journals/Backlog/capture.txt
   end
 
   switch $argv
