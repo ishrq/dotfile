@@ -43,6 +43,13 @@ vim.o.foldmethod     = 'indent' --manual, indent, syntax, expr, marker
 vim.o.swapfile       = false
 vim.o.undodir        = os.getenv("HOME") .. "/.config/nvim/.undo-history/"
 
+--EXPLORER
+vim.g.netrw_list_hide = '.pdf$,.jpg$,.png$'
+vim.g.netrw_localrmdir= 'rm -r'
+vim.g.netrw_localcopydircmd = 'cp -r'
+vim.g.netrw_banner = 0
+vim.g.netrw_keepdir = 0 --sync current & browsing dir
+
 --GENERAL
 vim.o.autoread       = true
 vim.o.ch             = 1 --commandbar height

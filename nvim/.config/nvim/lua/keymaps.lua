@@ -40,9 +40,14 @@ map('i', ',', ',<C-g>u')
 map('i', '.', '.<C-g>u')
 map('i', ';', ';<C-g>u')
 
--- Tabs, windows, frequent files
-map('n', '\\b', ":tab drop ~/ARCHIVE/Journal/backlog.txt<CR>", {desc='Open backlog.txt'})
-map('n', '\\j', ":tab drop ~/ARCHIVE/Journal/journal.txt<CR>", {desc='Open journal.txt'})
+-- Explorer, Tabs, windows, frequent files
+map('n', '\\b', ":tab drop ~/ARCHIVE/Journals/Backlog/capture.txt<CR>", {desc='Open backlog.txt'})
+map('n', '\\d', ":tab drop ~/ARCHIVE/Journals/Backlog/done.txt<CR>", {desc='Open done.txt'})
+map('n', '\\t', ":tab drop ~/ARCHIVE/Journals/Backlog/todo.txt<CR>", {desc='Open todo.txt'})
+map('n', '<C-t>', ':15Le %:p:h<CR>', default, {desc='Open netrw in file directory'})
+map('n', '<C-e-t>', ':15Le<CR>', default, {desc='Open netrw in working directory'})
+
+
 
 -- Diagnostic keymaps
 map('n', '<Leader>e', vim.diagnostic.open_float)
@@ -51,9 +56,6 @@ map('n', '<leader>q', vim.diagnostic.setloclist, default)
 -- mini.basic
 map({ 'n', 'i', 'x' }, '<C-s>', '<Nop>')
 map({ 'n' }, '<C-z>', '<Nop>')
-
--- mini.files
-map('n', '<C-t>', '<Cmd>lua MiniFiles.open()<CR>', {desc='Open file tree'})
 
 -- mini.trailspace
 map('n', '<Leader>t', '<Cmd>lua MiniTrailspace.trim()<CR>', {desc='Trim trailing space'})
