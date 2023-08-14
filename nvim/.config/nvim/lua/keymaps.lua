@@ -11,8 +11,7 @@ local expr = { expr=true, silent=true }
 -- General
 map('n', '<Leader>=', ':set spell!<CR>', {desc='Toggle spell check'})
 map('n', '<Leader>8', ':execute "set cc=" . (&cc == "" ? "80" : "")<CR>', default, {desc='Toggle character column'})
-map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<cr>', {desc='Split line'})
-map({'n','x'}, 'gd', '"+d', {desc='Delete to system clipboard'})
+map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<CR>', {desc='Split line'})
 
 -- Better indenting
 map('v', '<', '<gv^')
@@ -46,8 +45,6 @@ map('n', '\\d', ":tab drop ~/ARCHIVE/Journals/Backlog/done.txt<CR>", {desc='Open
 map('n', '\\t', ":tab drop ~/ARCHIVE/Journals/Backlog/todo.txt<CR>", {desc='Open todo.txt'})
 map('n', '<C-t>', ':15Le %:p:h<CR>', default, {desc='Open netrw in file directory'})
 map('n', '<C-e-t>', ':15Le<CR>', default, {desc='Open netrw in working directory'})
-
-
 
 -- Diagnostic keymaps
 map('n', '<Leader>e', vim.diagnostic.open_float)
