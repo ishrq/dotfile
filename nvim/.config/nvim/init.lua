@@ -1,8 +1,15 @@
 -- Author: IA
 
-require('options')
-require('keymaps')
-require('autocmd')
+-- https://nanotipsforvim.prose.sh/using-pcall-to-make-your-config-more-stable
+local function safeRequire(module)
+  local success, loadedModule = pcall(require, module)
+  if success then return loadedModule end
+  vim.cmd.echo ("Error loading " .. module)
+end
+
+safeRequire('options')
+safeRequire('keymaps')
+safeRequire('autocmd')
 
 -- Install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
