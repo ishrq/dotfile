@@ -62,7 +62,7 @@ vim.o.showmatch      = true
 vim.o.timeoutlen     = 1000  --key timeout
 vim.o.updatetime     = 50  --decrease update time
 
---From: https://this-week-in-neovim.org/2023/Jan/9
+--From https://this-week-in-neovim.org/2023/Jan/9
 local ns = vim.api.nvim_create_namespace('toggle_hlsearch')
 
 local function toggle_hlsearch(char)
@@ -78,3 +78,7 @@ local function toggle_hlsearch(char)
 end
 
 vim.on_key(toggle_hlsearch, ns)
+
+--From https://nanotipsforvim.prose.sh/stop-yourself-from-overnesting
+vim.cmd.highlight("Overnesting guibg=#E06C75")
+vim.fn.matchadd("Overnesting", ("\t"):rep(5) .. "\t*")
