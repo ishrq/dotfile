@@ -16,15 +16,20 @@ global_vars:
 
 matches:
 
+# Name
+  - trigger: ";name"
+    replace: "{{first_name}} {{last_name}}"
+    label: "Name"
+
 # Address
-  - trigger: "ad,,"
-    replace: "House 24 (flat 2B), Road 8, Block H, Aftabnagar (1212), Dhaka"
+  - trigger: ";ad"
+    replace: "House 24 (apt.2B), Road 8, Block H (Sector 2), Aftabnagar (1212), Dhaka"
     label: "Address/home"
 
 # Emails
   - trigger: "@@con"
     replace: "contact@{{domain}}"
-    label: "Email/private/contact@ishrq.com"
+    label: "Email/website/contact@ishrq.com"
 
   - trigger: "@@ia"
     replace: "ia@{{domain}}"
@@ -33,14 +38,6 @@ matches:
   - trigger: "@@work"
     replace: "work@{{domain}}"
     label: "Email/work/work@ishrq.com"
-
-  - trigger: "@@admin"
-    replace: "admin@{{domain}}"
-    label: "Email/work/admin@ishrq.com"
-
-  - trigger: "@@bz"
-    replace: "business@{{domain}}"
-    label: "Email/work/business@ishrq.com"
 
   - trigger: "@@gm"
     replace: "i.alam.2209@gmail.com"
@@ -63,7 +60,7 @@ matches:
     label: "Email/relay3"
 
 # Date
-  - trigger: "dd,,"
+  - trigger: ";date"
     replace: "{{mydate}}"
     label: "Date"
     vars:
@@ -73,7 +70,7 @@ matches:
           format: "%F"
 
 # Timestamp
-  - trigger: "ts,,"
+  - trigger: ";ts"
     replace: "{{mydate}}"
     label: "Timestamp"
     vars:
@@ -83,7 +80,7 @@ matches:
           format: "%Y%m%d%H%M"
 
 # Email signature
-  - trigger: "sig,,"
+  - trigger: ";sig"
     replace: "{{output}}"
     label: "Email signature"
     vars:
@@ -94,5 +91,23 @@ matches:
             - "Regards,\n{{first_name}} {{last_name}}"
             - "Sincerely,\n{{first_name}} {{last_name}}"
             - "Thank you,\n{{first_name}} {{last_name}}"
+
+# Text
+
+  - trigger: ";em"
+    replace: "—"
+    label: "Em dash"
+
+  - trigger: ";el"
+    replace: "…"
+    label: "Ellipsis"
+
+
+
+
+
+
+
+
 
 # ------------
