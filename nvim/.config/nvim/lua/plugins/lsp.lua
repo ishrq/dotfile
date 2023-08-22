@@ -50,6 +50,7 @@ return {
           ensure_installed = {
             'astro',
             'cssls',
+            'gopls',
             'html',
             'lua_ls',
             'marksman',
