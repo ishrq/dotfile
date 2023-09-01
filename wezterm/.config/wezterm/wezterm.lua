@@ -19,7 +19,7 @@ local config = {
     hide_tab_bar_if_only_one_tab = true,
     use_fancy_tab_bar = false,
     window_padding = { left = 2, right = 0, top = 0, bottom = 0, },
-    window_decorations = "TITLE",
+    window_decorations = "RESIZE",
 
     -- FONT
     font_size = 17,
@@ -102,6 +102,7 @@ local config = {
         { key = '8', mods = 'LEADER', action=act{ActivateTab=7}},
         { key = '9', mods = 'LEADER', action=act{ActivateTab=8}},
         { key = 'Tab', mods = 'CTRL', action = 'ActivateLastTab' },
+        { key = 'Tab', mods = 'LEADER', action = act.ShowTabNavigator },
     },
 
     mouse_bindings = {
