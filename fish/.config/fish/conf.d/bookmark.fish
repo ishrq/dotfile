@@ -34,12 +34,12 @@ function bookmark
   set alt_r "execute-silent(test -n {q} && echo {q} >> $rl_file || echo {-1} >> $rl_file )+reload(awk '!/^(\$|#)/' $rl_file)"
 
 
-  awk '!/^($|#)/' $rl_file | fzf\
+  awk '!/^($|#)/' $bk_file | fzf\
     -e --multi +s \
     --preview='echo {-1}'\
     --preview-window='hidden'\
     --query=(commandline) \
-    --prompt="Readlater> "\
+    --prompt="Bookmarks> "\
     --header 'Bookmarks | Readlater | Archive'\
     --bind="enter:$enter,ctrl-o:$ctrl_o"\
     --bind="alt-e:$alt_e"\
