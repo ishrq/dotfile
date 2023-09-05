@@ -102,6 +102,10 @@ matches:
     replace: "…"
     label: "Ellipsis"
 
+  - trigger: ";tdc"
+    replace: "thedhakacrawler.com"
+    label: "TDC domain"
+
 
 
 
