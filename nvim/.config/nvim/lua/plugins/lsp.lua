@@ -49,13 +49,13 @@ return {
         require('mason-lspconfig').setup({
           ensure_installed = {
             'astro',
+            'biome',
             'cssls',
             'gopls',
             'html',
             'lua_ls',
             'marksman',
             'pyright',
-            'rome',
             'tailwindcss',
           }
         })
