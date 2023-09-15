@@ -68,7 +68,9 @@ fish_add_path $GOPATH $GOPATH/bin
 abbr -a cp 'cp -rv'
 abbr -a mkdir 'mkdir -v'
 abbr -a mv 'mv -v'
-abbr -a y '  yt-dlp'
+abbr -a y ' yt-dlp -q --progress --restrict-filenames'
+abbr -a yv ' yt-dlp -q --progress --restrict-filenames -a link'
+abbr -a ya ' yt-dlp -q --progress --restrict-filenames -a link --audio-format mp3'
 
 abbr -a la 'lsd -a'
 abbr -a ld 'lsd -d'
