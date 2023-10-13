@@ -16,8 +16,8 @@ return {
       },
     },
     keys = {
-      { '<leader>fd', function() require('telescope.builtin').fd() end, desc='Find file' },
-      { '<leader>rg', function() require('telescope.builtin').live_grep() end, desc='Grep' },
+      -- { '<leader>fd', function() require('telescope.builtin').fd() end, desc='Find file' },
+      -- { '<leader>rg', function() require('telescope.builtin').live_grep() end, desc='Grep' },
       { '<leader>gc', function() require('telescope.builtin').git_commits() end, desc='Git commits' },
       { '<leader>gs', function() require('telescope.builtin').git_status() end, desc='Git status' },
       { '<leader>b', function() require('telescope.builtin').buffers() end, desc='Buffers' },

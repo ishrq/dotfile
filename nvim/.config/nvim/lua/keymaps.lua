@@ -54,6 +54,11 @@ map('n', '<leader>q', vim.diagnostic.setloclist, default)
 map({ 'n', 'i', 'x' }, '<C-s>', '<Nop>')
 map({ 'n' }, '<C-z>', '<Nop>')
 
+-- mini.pick
+map('n', '<Leader>fd', '<Cmd>lua MiniPick.builtin.files()<CR>', {desc='Find files'})
+map('n', '<Leader>rg', '<Cmd>lua MiniPick.builtin.grep_live()<CR>', {desc='Live grep'})
+map('n', '<Leader>mp', '<Cmd>lua MiniPick.builtin.resume()<CR>', {desc='Resume pick'})
+
 -- mini.trailspace
 map('n', '<Leader>t', '<Cmd>lua MiniTrailspace.trim()<CR>', {desc='Trim trailing space'})
 map('n', '<Leader>T', '<Cmd>lua MiniTrailspace.trim_last_lines()<CR>', {desc='Trim trailing lines'})
