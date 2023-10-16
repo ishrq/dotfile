@@ -208,9 +208,9 @@ return {
       require('luasnip.loaders.from_lua').lazy_load()
     end
   },
-  -- https://github.com/jose-elias-alvarez/null-ls.nvim
+  -- https://github.com/nvimtools/none-ls.nvim
   {
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     lazy = true,
     event = { 'BufReadPre', 'BufNewFile' },
     opts = function()
@@ -228,7 +228,6 @@ return {
           diagnostics.todo_comments,
           diagnostics.trail_space,
           hover.dictionary,
-
           code_actions.gitsigns,
           diagnostics.write_good,
           formatting.rome,
