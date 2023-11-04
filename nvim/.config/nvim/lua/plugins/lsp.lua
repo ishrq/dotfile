@@ -230,7 +230,6 @@ return {
           hover.dictionary,
           code_actions.gitsigns,
           diagnostics.write_good,
-          formatting.rome,
           diagnostics.stylint,
           diagnostics.codespell,
           formatting.codespell,
