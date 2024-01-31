@@ -56,6 +56,10 @@ map('n', '<C-e-t>', ':15Le<CR>', default, {desc='Open netrw in working directory
 map('n', '<Leader>e', vim.diagnostic.open_float)
 map('n', '<leader>q', vim.diagnostic.setloclist, default)
 
+-- Smart `dd` (don't yank blank lines)
+-- https://nanotipsforvim.prose.sh/keeping-your-register-clean-from-dd
+map('n', 'dd', function () if vim.fn.getline(".") == "" then return '"_dd' end return 'dd' end, {expr = true})
+
 -- mini.basic
 map({ 'n', 'i', 'x' }, '<C-s>', '<Nop>')
 map({ 'n' }, '<C-z>', '<Nop>')
