@@ -27,7 +27,7 @@ function bookmark
   set alt_e "execute(rg -l {-1} $dir | xargs $EDITOR)"
   set ctrl_y "execute(echo -n {-1} | fish_clipboard_copy)+abort"
 
-  set ctrl_b "reload(cat $bk_file)+change-prompt(Bookmarks> )+change-preview-window(up,1)+unbind(tab,ctrl-b)+rebind(change,ctrl-z,ctrl-r)"
+  set ctrl_b "reload(cat $bk_file)+change-prompt(Bookmarks> )+change-preview-window(hidden)+unbind(tab,ctrl-b)+rebind(change,ctrl-z,ctrl-r)"
   set ctrl_r "reload(cat $rl_file)+change-prompt(Readlater> )+change-preview-window(hidden|)+unbind(change,ctrl-r)+rebind(ctrl-z,ctrl-b,tab)"
   set ctrl_z "reload(cat $ar_file)+change-prompt(Archive> )+change-preview-window(up,1)+unbind(tab,ctrl-z)+rebind(change,ctrl-b,ctrl-r)"
 
