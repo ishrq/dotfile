@@ -39,7 +39,7 @@ function bookmark
   set alt_space "execute-silent(test -n {q} && echo {q} >> $bk_file || echo {-1} >> $bk_file )+reload(awk '!/^(\$|#)/' $bk_file)"
 
   awk $filter $bk_file | fzf\
-    -e --multi +s \
+    -e -m +s \
     --preview='echo {-1}'\
     --preview-window='hidden'\
     --query=(commandline) \
@@ -49,7 +49,7 @@ function bookmark
     --bind="alt-e:$alt_e"\
     --bind="ctrl-y:$ctrl_y"\
     --bind="ctrl-z:$ctrl_z,ctrl-b:$ctrl_b,ctrl-r:$ctrl_r"\
-    --bind="alt-space:$alt_space,alt-z:$alt_z,alt-r:$alt_r"\
+    --bind="alt-space:$alt_space,alt-z:$alt_z,alt-r:$alt_r"
   commandline -f repaint
 end
 
