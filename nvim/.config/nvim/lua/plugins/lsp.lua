@@ -71,13 +71,17 @@ return {
           end,
         })
 
-        require 'lspconfig'.lua_ls.setup {
+        lspconfig.lua_ls.setup {
           Lua = {
             runtime = { version = 'LuaJIT', },
             diagnostics = { globals = { 'vim' }, },
             workspace = { library = vim.api.nvim_get_runtime_file('', true), },
             telemetry = { enable = false, },
           },
+        }
+
+        lspconfig.html.setup{
+          filetypes = { 'html', 'templ', 'astro'}
         }
 
         -- Edit lsp diagnostics signs (in margin)
