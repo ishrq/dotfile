@@ -28,6 +28,16 @@ snippet tdcpost
     draft: false
     ---
 
+snippet tdcissue
+    ---
+    id: $1
+    title: $2, ${CURRENT_YEAR}
+    slug: $3-${CURRENT_YEAR}
+    date: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}
+    description: $6
+    cover: { src: /magzine-covers/$7, alt: "$8" }
+    ---
+
 snippet tdcmag
     ---
     issue: issue-$1
@@ -36,7 +46,7 @@ snippet tdcmag
     author: $4
     position: $5
     description: $6
-    image: { src: ../../../public/post-images/$7, alt: "$8" }
+    image: { src: /magazine-post-images/$7, alt: "$8" }
     ---
 
 snippet pn Permanent note
