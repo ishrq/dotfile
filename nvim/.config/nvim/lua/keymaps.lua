@@ -12,6 +12,7 @@ local expr = { expr=true, silent=true }
 map('n', '<Leader>=', ':set spell!<CR>', {desc='Toggle spell check'})
 map('n', '<Leader>8', ':execute "set cc=" . (&cc == "" ? "80" : "")<CR>', default, {desc='Toggle character column'})
 map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<CR>', {desc='Split line'})
+map('i', '<C-z>', '<C-g>u<Esc>[S1z=`]a<C-g>u', {desc='Fix spelling'})
 
 -- Better indenting
 map('v', '<', '<gv^')
@@ -62,7 +63,6 @@ map('n', 'dd', function () if vim.fn.getline(".") == "" then return '"_dd' end r
 
 -- mini.basic
 map({ 'n', 'i', 'x' }, '<C-s>', '<Nop>')
-map('i', '<C-z>', '<C-g>u<Esc>[S1z=`]a<C-g>u', {desc='Fix spelling'})
 
 -- mini.pick
 map('n', '<Leader>fd', '<Cmd>lua MiniPick.builtin.files()<CR>', {desc='Find files'})
