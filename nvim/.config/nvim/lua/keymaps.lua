@@ -62,7 +62,7 @@ map('n', 'dd', function () if vim.fn.getline(".") == "" then return '"_dd' end r
 
 -- mini.basic
 map({ 'n', 'i', 'x' }, '<C-s>', '<Nop>')
-map({ 'n' }, '<C-z>', '<Nop>')
+map('i', '<C-z>', '<C-g>u<Esc>[S1z=`]a<C-g>u', {desc='Fix spelling'})
 
 -- mini.pick
 map('n', '<Leader>fd', '<Cmd>lua MiniPick.builtin.files()<CR>', {desc='Find files'})
