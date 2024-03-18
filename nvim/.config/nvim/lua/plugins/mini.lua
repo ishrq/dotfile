@@ -35,12 +35,6 @@ return {
         silent = true,
       }
 
-      require('mini.hues').setup({
-        background = '#000000',
-        foreground = '#c9c5cb',
-        saturation = 'high'
-      })
-
       require('mini.basics').setup({
         options = {
           basic = true,
@@ -97,6 +91,12 @@ return {
 
         },
       }
+
+      require('mini.hues').setup({
+        background = '#000000',
+        foreground = '#c9c5cb',
+        saturation = 'high'
+      })
 
       require('mini.indentscope').setup{
         draw = {
