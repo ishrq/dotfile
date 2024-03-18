@@ -22,6 +22,9 @@ return{
       -- (context property is optional).
       -- list_models = '<omitted lua function>', -- Retrieves a list of model names
       debug = false -- Prints errors and the command which is run.
+    },
+    keys = {
+      { '<leader>]', ':Gen<CR>', mode = { 'n', 'v', 'x' }, desc = 'Local AI: Menu' },
     }
   },
 }

@@ -65,9 +65,6 @@ map('n', 'dd', function () if vim.fn.getline(".") == "" then return '"_dd' end r
 map("x", ".", ":norm .<CR>", nosilent)
 map("x", "@", ":norm @q<CR>", nosilent)
 
---gen.nvim
-vim.keymap.set({ 'n', 'v' }, '<leader>]', ':Gen<CR>')
-
 -- mini.basic
 map({ 'n', 'i', 'x' }, '<C-s>', '<Nop>')
 
