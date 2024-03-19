@@ -68,22 +68,20 @@ map("x", "@", ":norm @q<CR>", nosilent)
 -- mini.basic
 map({ 'n', 'i', 'x' }, '<C-s>', '<Nop>')
 
--- mini.pick
-map('n', '<Leader>fd', '<Cmd>lua MiniPick.builtin.files()<CR>', {desc='Find files'})
-map('n', '<Leader>rg', '<Cmd>lua MiniPick.builtin.grep_live()<CR>', {desc='Grep'})
-map('n', '<Leader>2', '<Cmd>lua MiniPick.builtin.resume()<CR>', {desc='Resume pick'})
-map('n', '<Leader>b', '<Cmd>lua MiniPick.builtin.buffers()<CR>', {desc='Pick buffers'})
-
--- mini.extra
+-- mini.pick / mini.extra
 map('n', '<Leader>1', '<Cmd>lua MiniExtra.pickers.oldfiles()<CR>', {desc='Recent files'})
-map('n', '<Leader>n', '<Cmd>lua MiniExtra.pickers.treesitter()<CR>', {desc='Treesitter Jump'})
-map('n', '<Leader>y', '<Cmd>lua MiniExtra.pickers.registers()<CR>', {desc='Registers'})
-map('n', '<Leader>c', '<Cmd>lua MiniExtra.pickers.list({ scope = "change" })<CR>', {desc='Changelist'})
-map('n', '<Leader>j', '<Cmd>lua MiniExtra.pickers.list({ scope = "jump" })<CR>', {desc='Jumplist'})
-map('n', '<Leader>q', '<Cmd>lua MiniExtra.pickers.list({ scope = "quickfix" })<CR>', {desc='Quickfix List'})
+map('n', '<Leader>2', '<Cmd>lua MiniPick.builtin.resume()<CR>', {desc='Resume pick'})
 map('n', '<Leader>Q', '<Cmd>lua MiniExtra.pickers.diagnostic()<CR>', {desc='Diagnostics'})
+map('n', '<Leader>b', '<Cmd>lua MiniPick.builtin.buffers()<CR>', {desc='Pick buffers'})
+map('n', '<Leader>c', '<Cmd>lua MiniExtra.pickers.list({ scope = "change" })<CR>', {desc='Changelist'})
+map('n', '<Leader>fd', '<Cmd>lua MiniPick.builtin.files()<CR>', {desc='Find files'})
 map('n', '<Leader>gc', '<Cmd>lua MiniExtra.pickers.git_commits()<CR>', {desc='Git Commits'})
 map('n', '<Leader>gh', '<Cmd>lua MiniExtra.pickers.git_hunks()<CR>', {desc='Git Hunks'})
+map('n', '<Leader>j', '<Cmd>lua MiniExtra.pickers.list({ scope = "jump" })<CR>', {desc='Jumplist'})
+map('n', '<Leader>n', '<Cmd>lua MiniExtra.pickers.treesitter()<CR>', {desc='Treesitter Jump'})
+map('n', '<Leader>q', '<Cmd>lua MiniExtra.pickers.list({ scope = "quickfix" })<CR>', {desc='Quickfix List'})
+map('n', '<Leader>rg', '<Cmd>lua MiniPick.builtin.grep_live()<CR>', {desc='Grep'})
+map('n', '<Leader>y', '<Cmd>lua MiniExtra.pickers.registers()<CR>', {desc='Registers'})
 
 -- mini.trailspace
 map('n', '<Leader>t', '<Cmd>lua MiniTrailspace.trim()<CR>', {desc='Trim trailing space'})
