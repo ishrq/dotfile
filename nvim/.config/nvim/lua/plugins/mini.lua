@@ -20,17 +20,13 @@ return {
         require('mini.fuzzy').setup()
       end
 
+      local gen_ai_spec = require('mini.extra').gen_ai_spec
       require('mini.ai').setup{
         custom_textobjects = {
-          x = { '%f[%d]%d+' }, -- number
-
-          -- entire buffer
-          B = function()
-            local from = { line = 1, col = 1 }
-            local to = { line = vim.fn.line('$'), col = math.max(vim.fn.getline('$'):len(), 1) }
-            return { from = from, to = to }
-          end,
-
+          B = gen_ai_spec.buffer(),
+          D = gen_ai_spec.diagnostic(),
+          I = gen_ai_spec.indent(),
+          N = gen_ai_spec.number(),
         },
         n_lines = 500,
         silent = true,
