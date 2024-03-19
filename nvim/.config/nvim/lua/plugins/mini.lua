@@ -8,6 +8,7 @@ return {
       require('mini.align').setup()
       require('mini.comment').setup()
       require('mini.cursorword').setup()
+      require('mini.extra').setup()
       require('mini.move').setup()
       require('mini.pairs').setup()
       require('mini.pick').setup()
