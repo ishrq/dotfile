@@ -62,8 +62,8 @@ map('n', '<leader>q', vim.diagnostic.setloclist, default)
 map('n', 'dd', function () if vim.fn.getline(".") == "" then return '"_dd' end return 'dd' end, {expr = true})
 
 -- .repeat & macro on visually selected
-map("x", ".", ":norm .<CR>", nosilent)
-map("x", "@", ":norm @q<CR>", nosilent)
+map("x", ".", ":norm .<CR>")
+map("x", "@", ":norm @q<CR>")
 
 -- mini.basic
 map({ 'n', 'i', 'x' }, '<C-s>', '<Nop>')
